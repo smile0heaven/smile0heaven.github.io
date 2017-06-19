@@ -3,14 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="#自定义view#  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)  进行测量int widthMode = MeasureSpec.getMode(widthMeasureSpec);int widthSize = MeasureSpec.getSize(widthMeasureSpec);  onFi">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/06/19/自定义View/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="#自定义view#  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)  进行测量int widthMode = MeasureSpec.getMode(widthMeasureSpec);int widthSize = MeasureSpec.getSize(widthMeasureSpec);  onFi">
+<meta property="og:updated_time" content="2017-06-19T09:28:21.442Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="#自定义view#  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)  进行测量int widthMode = MeasureSpec.getMode(widthMeasureSpec);int widthSize = MeasureSpec.getSize(widthMeasureSpec);  onFi">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -59,78 +63,70 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/19/README/" class="archive-article-date">
-  <time datetime="2017-06-19T08:49:26.487Z" itemprop="datePublished">Jun 19</time>
+        <section id="main"><article id="post-自定义View" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/19/自定义View/" class="article-date">
+  <time datetime="2017-06-19T07:24:23.308Z" itemprop="datePublished">2017-06-19</time>
 </a>
-      
-    </header>
+    
   </div>
-</article>
-  
+  <div class="article-inner">
     
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/19/动画/" class="archive-article-date">
-  <time datetime="2017-06-19T07:31:20.478Z" itemprop="datePublished">Jun 19</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/19/自定义View/" class="archive-article-date">
-  <time datetime="2017-06-19T07:24:23.308Z" itemprop="datePublished">Jun 19</time>
-</a>
-      
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/19/hello-world/" class="archive-article-date">
-  <time datetime="2017-06-19T07:19:06.390Z" itemprop="datePublished">Jun 19</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/19/hello-world/">Hello World</a>
-    </h1>
-  
+        <p>#自定义view#</p>
+<ul>
+<li>protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)  进行测量<br>int widthMode = MeasureSpec.getMode(widthMeasureSpec);<br>int widthSize = MeasureSpec.getSize(widthMeasureSpec); </li>
+<li>onFinishInflate():从xml加载组件后回调</li>
+<li>onSizeChanged():组件大小改变时回调</li>
+<li>onLayout():确定显示的位置</li>
+<li>onTouchEvent():监听到触摸事件时的回调</li>
+</ul>
+<p>##三种实现自定义控件的方法##</p>
+<ol>
+<li>对现有控件进行拓展</li>
+<li>通过组合来实现新的控件</li>
+<li>重写view来实现全新的控件</li>
+</ol>
+<p>##测量模式    </p>
+<ol>
+<li>UNSPECIFIED    父容器没有对当前View有任何限制，当前View可以任意取尺寸 </li>
+<li>EXACTLY    当前的尺寸就是当前View应该取的尺寸   match_parent以及固定尺寸</li>
+<li>AT_MOST    当前尺寸是当前View能取的最大尺寸  wrap_content<br>new Canvas(bitmap)canvas上的所有绘制都是基于bitmap上的</li>
+</ol>
 
-    </header>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/19/自定义View/" data-id="cj43xvcsd000328l1n9niemqj" class="article-share-link">Share</a>
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/19/动画/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/19/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         
