@@ -638,36 +638,7 @@
 <li>Scale（缩放）属性：对视图进行缩放</li>
 <li>Translate属性：可以对视图进行变换</li>
 <li>AnimationSet继承自Animation，是上面四种的组合容器管理类，没有自己特有的属性，他的属性继承自Animation，当我们对set标签使用Animation的属性时会对该标签下的所有子控件都产生影响。</li>
-<li>Interpolator（插值器）属性：类似于动画以一个什么样的速率去执行动画<blockquote><p>`</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;    
-&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;   
-android:interpolator=&quot;@[package:]anim/interpolator_resource&quot;  
-android:shareInterpolator=[&quot;true&quot; | &quot;false&quot;] &gt;
-&lt;alpha
-    android:fromAlpha=&quot;float&quot;
-    android:toAlpha=&quot;float&quot; /&gt;
-&lt;scale
-    android:fromXScale=&quot;float&quot;
-    android:toXScale=&quot;float&quot;
-    android:fromYScale=&quot;float&quot;
-    android:toYScale=&quot;float&quot;
-    android:pivotX=&quot;float&quot;
-    android:pivotY=&quot;float&quot; /&gt;
-&lt;translate
-    android:fromXDelta=&quot;float&quot;
-    android:toXDelta=&quot;float&quot;
-    android:fromYDelta=&quot;float&quot;
-    android:toYDelta=&quot;float&quot; /&gt;
-&lt;rotate
-    android:fromDegrees=&quot;float&quot;
-    android:toDegrees=&quot;float&quot;
-    android:pivotX=&quot;float&quot;
-    android:pivotY=&quot;float&quot; /&gt;
-&lt;set&gt;
-    ...
-&lt;/set&gt;
-</code></pre><p>`</p>
-</blockquote>
+<li>Interpolator（插值器）属性：类似于动画以一个什么样的速率去执行动画<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">	&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;    </div><div class="line">	&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;   </div><div class="line">    android:interpolator=&quot;@[package:]anim/interpolator_resource&quot;  </div><div class="line">    android:shareInterpolator=[&quot;true&quot; | &quot;false&quot;] &gt;</div><div class="line">    &lt;alpha</div><div class="line">        android:fromAlpha=&quot;float&quot;</div><div class="line">        android:toAlpha=&quot;float&quot; /&gt;</div><div class="line">    &lt;scale</div><div class="line">        android:fromXScale=&quot;float&quot;</div><div class="line">        android:toXScale=&quot;float&quot;</div><div class="line">        android:fromYScale=&quot;float&quot;</div><div class="line">        android:toYScale=&quot;float&quot;</div><div class="line">        android:pivotX=&quot;float&quot;</div><div class="line">        android:pivotY=&quot;float&quot; /&gt;</div><div class="line">    &lt;translate</div><div class="line">        android:fromXDelta=&quot;float&quot;</div><div class="line">        android:toXDelta=&quot;float&quot;</div><div class="line">        android:fromYDelta=&quot;float&quot;</div><div class="line">        android:toYDelta=&quot;float&quot; /&gt;</div><div class="line">    &lt;rotate</div><div class="line">        android:fromDegrees=&quot;float&quot;</div><div class="line">        android:toDegrees=&quot;float&quot;</div><div class="line">        android:pivotX=&quot;float&quot;</div><div class="line">        android:pivotY=&quot;float&quot; /&gt;</div><div class="line">    &lt;set&gt;</div><div class="line">        ...</div><div class="line">    &lt;/set&gt;</div><div class="line">&lt;/set&gt;</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <table>
