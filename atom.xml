@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>我要好好学习</title>
   
   <link href="/atom.xml" rel="self"/>
   
@@ -87,17 +87,9 @@
     <link href="http://yoursite.com/2016/02/21/%E5%8A%A8%E7%94%BB/"/>
     <id>http://yoursite.com/2016/02/21/动画/</id>
     <published>2016-02-20T16:00:00.000Z</published>
-    <updated>2017-06-20T07:58:36.844Z</updated>
+    <updated>2017-06-20T08:04:55.805Z</updated>
     
-    <content type="html"><![CDATA[<p>categories:</p>
-<ul>
-<li>Sports</li>
-<li>Baseball<br>tags:</li>
-<li>Injury</li>
-<li>Fight</li>
-<li>Shocking</li>
-</ul>
-<h1 id="Animation-动画深度分析"><a href="#Animation-动画深度分析" class="headerlink" title="Animation 动画深度分析"></a>Animation 动画深度分析</h1><h2 id="View-Animation"><a href="#View-Animation" class="headerlink" title="View Animation"></a>View Animation</h2><p> 视图动画，也叫Tween（补间）动画可以在一个视图容器内执行一系列简单变换（位置、大小、旋转、透明度）。譬如，如果你有一个TextView对象，您可以移动、旋转、缩放、透明度设置其文本，当然，如果它有一个背景图像，背景图像会随着文本变化。</p>
+    <content type="html"><![CDATA[<h1 id="Animation-动画深度分析"><a href="#Animation-动画深度分析" class="headerlink" title="Animation 动画深度分析"></a>Animation 动画深度分析</h1><h2 id="View-Animation"><a href="#View-Animation" class="headerlink" title="View Animation"></a>View Animation</h2><p> 视图动画，也叫Tween（补间）动画可以在一个视图容器内执行一系列简单变换（位置、大小、旋转、透明度）。譬如，如果你有一个TextView对象，您可以移动、旋转、缩放、透明度设置其文本，当然，如果它有一个背景图像，背景图像会随着文本变化。</p>
 <ol>
 <li>Alpha(透明度) 属性：用于控制动画的透明度</li>
 <li>Rotate（旋转）属性 ：可以对视图进行旋转</li>
@@ -266,15 +258,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;categories:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Sports&lt;/li&gt;
-&lt;li&gt;Baseball&lt;br&gt;tags:&lt;/li&gt;
-&lt;li&gt;Injury&lt;/li&gt;
-&lt;li&gt;Fight&lt;/li&gt;
-&lt;li&gt;Shocking&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;Animation-动画深度分析&quot;&gt;&lt;a href=&quot;#Animation-动画深度分析&quot; class=&quot;headerlink&quot; title=&quot;Animation 动画深度分析&quot;&gt;&lt;/a&gt;Animation 动画深度分析&lt;/h1&gt;&lt;h2 id=&quot;View-Animation&quot;&gt;&lt;a href=&quot;#View-Animation&quot; class=&quot;headerlink&quot; title=&quot;View Animation&quot;&gt;&lt;/a&gt;View Animation&lt;/h2&gt;&lt;p&gt; 视图动画，也叫Tween（补间）动画可以在一个视图容器内执行一系列简单变换（位置、大小、旋转、透明度）。譬如，如果你有一个TextView对象，您可以移动、旋转、缩放、透明度设置其文本，当然，如果它有一个背景图像，背景图像会随着文本变化。&lt;/p&gt;
+      &lt;h1 id=&quot;Animation-动画深度分析&quot;&gt;&lt;a href=&quot;#Animation-动画深度分析&quot; class=&quot;headerlink&quot; title=&quot;Animation 动画深度分析&quot;&gt;&lt;/a&gt;Animation 动画深度分析&lt;/h1&gt;&lt;h2 id=&quot;View-Animation&quot;&gt;&lt;a href=&quot;#View-Animation&quot; class=&quot;headerlink&quot; title=&quot;View Animation&quot;&gt;&lt;/a&gt;View Animation&lt;/h2&gt;&lt;p&gt; 视图动画，也叫Tween（补间）动画可以在一个视图容器内执行一系列简单变换（位置、大小、旋转、透明度）。譬如，如果你有一个TextView对象，您可以移动、旋转、缩放、透明度设置其文本，当然，如果它有一个背景图像，背景图像会随着文本变化。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Alpha(透明度) 属性：用于控制动画的透明度&lt;/li&gt;
 &lt;li&gt;Rotate（旋转）属性 ：可以对视图进行旋转&lt;/li&gt;
@@ -306,6 +290,14 @@
     
     </summary>
     
+      <category term="Sports" scheme="http://yoursite.com/categories/Sports/"/>
+    
+      <category term="Baseball" scheme="http://yoursite.com/categories/Sports/Baseball/"/>
+    
+    
+      <category term="Injury" scheme="http://yoursite.com/tags/Injury/"/>
+    
+      <category term="Fight" scheme="http://yoursite.com/tags/Fight/"/>
     
   </entry>
   
