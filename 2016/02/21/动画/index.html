@@ -94,16 +94,16 @@
 
 
 
-<meta name="description" content="Animation 动画深度分析View Animation 视图动画，也叫Tween（补间）动画可以在一个视图容器内执行一系列简单变换（位置、大小、旋转、透明度）。譬如，如果你有一个TextView对象，您可以移动、旋转、缩放、透明度设置其文本，当然，如果它有一个背景图像，背景图像会随着文本变化。  Alpha(透明度) 属性：用于控制动画的透明度 Rotate（旋转）属性 ：可以对视图进行旋转">
+<meta name="description" content="categories:  Sports Baseballtags: Injury Fight Shocking  Animation 动画深度分析View Animation 视图动画，也叫Tween（补间）动画可以在一个视图容器内执行一系列简单变换（位置、大小、旋转、透明度）。譬如，如果你有一个TextView对象，您可以移动、旋转、缩放、透明度设置其文本，当然，如果它有一个背景图像，背景图像会">
 <meta property="og:type" content="article">
 <meta property="og:title" content="动画">
 <meta property="og:url" content="http://yoursite.com/2016/02/21/动画/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Animation 动画深度分析View Animation 视图动画，也叫Tween（补间）动画可以在一个视图容器内执行一系列简单变换（位置、大小、旋转、透明度）。譬如，如果你有一个TextView对象，您可以移动、旋转、缩放、透明度设置其文本，当然，如果它有一个背景图像，背景图像会随着文本变化。  Alpha(透明度) 属性：用于控制动画的透明度 Rotate（旋转）属性 ：可以对视图进行旋转">
-<meta property="og:updated_time" content="2017-06-19T10:02:39.651Z">
+<meta property="og:description" content="categories:  Sports Baseballtags: Injury Fight Shocking  Animation 动画深度分析View Animation 视图动画，也叫Tween（补间）动画可以在一个视图容器内执行一系列简单变换（位置、大小、旋转、透明度）。譬如，如果你有一个TextView对象，您可以移动、旋转、缩放、透明度设置其文本，当然，如果它有一个背景图像，背景图像会">
+<meta property="og:updated_time" content="2017-06-20T06:13:42.264Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动画">
-<meta name="twitter:description" content="Animation 动画深度分析View Animation 视图动画，也叫Tween（补间）动画可以在一个视图容器内执行一系列简单变换（位置、大小、旋转、透明度）。譬如，如果你有一个TextView对象，您可以移动、旋转、缩放、透明度设置其文本，当然，如果它有一个背景图像，背景图像会随着文本变化。  Alpha(透明度) 属性：用于控制动画的透明度 Rotate（旋转）属性 ：可以对视图进行旋转">
+<meta name="twitter:description" content="categories:  Sports Baseballtags: Injury Fight Shocking  Animation 动画深度分析View Animation 视图动画，也叫Tween（补间）动画可以在一个视图容器内执行一系列简单变换（位置、大小、旋转、透明度）。譬如，如果你有一个TextView对象，您可以移动、旋转、缩放、透明度设置其文本，当然，如果它有一个背景图像，背景图像会">
 
 
 
@@ -341,16 +341,22 @@
       
 
       
-        <h1 id="Animation-动画深度分析"><a href="#Animation-动画深度分析" class="headerlink" title="Animation 动画深度分析"></a>Animation 动画深度分析</h1><h2 id="View-Animation"><a href="#View-Animation" class="headerlink" title="View Animation"></a>View Animation</h2><p> 视图动画，也叫Tween（补间）动画可以在一个视图容器内执行一系列简单变换（位置、大小、旋转、透明度）。譬如，如果你有一个TextView对象，您可以移动、旋转、缩放、透明度设置其文本，当然，如果它有一个背景图像，背景图像会随着文本变化。</p>
+        <p>categories:</p>
+<ul>
+<li>Sports</li>
+<li>Baseball<br>tags:</li>
+<li>Injury</li>
+<li>Fight</li>
+<li>Shocking</li>
+</ul>
+<h1 id="Animation-动画深度分析"><a href="#Animation-动画深度分析" class="headerlink" title="Animation 动画深度分析"></a>Animation 动画深度分析</h1><h2 id="View-Animation"><a href="#View-Animation" class="headerlink" title="View Animation"></a>View Animation</h2><p> 视图动画，也叫Tween（补间）动画可以在一个视图容器内执行一系列简单变换（位置、大小、旋转、透明度）。譬如，如果你有一个TextView对象，您可以移动、旋转、缩放、透明度设置其文本，当然，如果它有一个背景图像，背景图像会随着文本变化。</p>
 <ol>
 <li>Alpha(透明度) 属性：用于控制动画的透明度</li>
 <li>Rotate（旋转）属性 ：可以对视图进行旋转</li>
 <li>Scale（缩放）属性：对视图进行缩放</li>
 <li>Translate属性：可以对视图进行变换</li>
 <li>AnimationSet继承自Animation，是上面四种的组合容器管理类，没有自己特有的属性，他的属性继承自Animation，当我们对set标签使用Animation的属性时会对该标签下的所有子控件都产生影响。</li>
-<li>Interpolator（插值器）属性：类似于动画以一个什么样的速率去执行动画</li>
-</ol>
-<p>`</p>
+<li>Interpolator（插值器）属性：类似于动画以一个什么样的速率去执行动画<blockquote><p>`</p>
 <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;    
 &lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;   
 android:interpolator=&quot;@[package:]anim/interpolator_resource&quot;  
@@ -379,6 +385,9 @@ android:shareInterpolator=[&quot;true&quot; | &quot;false&quot;] &gt;
     ...
 &lt;/set&gt;
 </code></pre><p>`</p>
+</blockquote>
+</li>
+</ol>
 <table>
 <thead>
 <tr>
@@ -397,7 +406,7 @@ android:shareInterpolator=[&quot;true&quot; | &quot;false&quot;] &gt;
 </tr>
 </tbody>
 </table>
-<p><strong>补间动画执行之后并未改变View的真实布局属性值。我们对一个Button进行操作，将他从原来的位置移动到另一位置，但是实际响应button事件的位置，还是原来的位置。</strong></p>
+<p><strong>补间动画执行之后并未改变View的真实布局属性值。我们对一个Button进行操作，将他从原来的位置移动到另一位置，但是实际响应button事件的位置，还是原来的位置。</strong><br><a id="more"></a></p>
 <p>##Drawable Animation<br> Drawable动画其实就是Frame动画（帧动画），它允许你实现像播放幻灯片一样的效果，这种动画的实质其实是Drawable，所以这种动画的XML定义方式文件一般放在res/drawable/目录下。加载效果的实现</p>
 <ol>
 <li><animation-list> 必须是根节点，包含一个或者多个item元素，包含属性如下：<ul>
