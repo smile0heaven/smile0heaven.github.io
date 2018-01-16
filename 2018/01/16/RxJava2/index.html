@@ -96,12 +96,20 @@
 
 
 
-<meta property="og:type" content="website">
+<meta name="description" content="title: Rxjava2分析date: 2018-01-12categories: - AndroidRxjava的subcribe()首先我们创建一个flowable使用 Flowable.create() 我们获取了一个FlowableCreate对象 12345678@CheckReturnValue@BackpressureSupport(BackpressureKind.SPECI">
+<meta property="og:type" content="article">
 <meta property="og:title" content="我要好好学习">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/01/16/RxJava2/index.html">
 <meta property="og:site_name" content="我要好好学习">
+<meta property="og:description" content="title: Rxjava2分析date: 2018-01-12categories: - AndroidRxjava的subcribe()首先我们创建一个flowable使用 Flowable.create() 我们获取了一个FlowableCreate对象 12345678@CheckReturnValue@BackpressureSupport(BackpressureKind.SPECI">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1008453-2a068dc6b726568a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/580">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1008453-659c8c548805fdcd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/580">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1008453-e11e9d75b1775e4e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/633">
+<meta property="og:updated_time" content="2018-01-16T03:54:56.716Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我要好好学习">
+<meta name="twitter:description" content="title: Rxjava2分析date: 2018-01-12categories: - AndroidRxjava的subcribe()首先我们创建一个flowable使用 Flowable.create() 我们获取了一个FlowableCreate对象 12345678@CheckReturnValue@BackpressureSupport(BackpressureKind.SPECI">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1008453-2a068dc6b726568a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/580">
 
 
 
@@ -129,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/16/RxJava2/"/>
 
 
 
 
 
-  <title>我要好好学习</title>
+  <title> | 我要好好学习</title>
   
 
 
@@ -170,9 +178,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -285,9 +291,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -313,9 +319,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/16/RxJava2/" itemprop="url">未命名</a></h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -373,9 +377,7 @@
       
 
       
-        
-          
-            <hr>
+        <hr>
 <p>title: Rxjava2分析<br>date: 2018-01-12<br>categories:</p>
 <h2 id="Android"><a href="#Android" class="headerlink" title="- Android"></a>- Android</h2><h2 id="Rxjava的subcribe"><a href="#Rxjava的subcribe" class="headerlink" title="Rxjava的subcribe()"></a>Rxjava的subcribe()</h2><p>首先我们创建一个flowable<br>使用 Flowable.create() 我们获取了一个FlowableCreate对象</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@CheckReturnValue</div><div class="line">@BackpressureSupport(BackpressureKind.SPECIAL)</div><div class="line">@SchedulerSupport(SchedulerSupport.NONE)</div><div class="line">public static &lt;T&gt; Flowable&lt;T&gt; create(FlowableOnSubscribe&lt;T&gt; source, BackpressureStrategy mode) &#123;</div><div class="line">    ObjectHelper.requireNonNull(source, &quot;source is null&quot;);</div><div class="line">    ObjectHelper.requireNonNull(mode, &quot;mode is null&quot;);</div><div class="line">    return RxJavaPlugins.onAssembly(new FlowableCreate&lt;T&gt;(source, mode));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -408,24 +410,37 @@
 <p>这里实现了下游 获取数据 所以我们不需要自己去实现</p>
 <h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>Flowable上游有一个缓冲池 ，当同步加载的时候，就是下游request一个，上游取一个，（当上下游工作在同一个线程中时, 这时候是一个同步的订阅关系, 也就是说上游每发送一个事件必须等到下游接收处理完了以后才能接着发送下一个事件）但是当异步请求的时候，上游自身有一个request这个request=128 意味着上游的缓冲池可以放128个数据，<br>上游按照需要把onnext方法请求放入缓冲池 ，假设我们放入1个,按理下游取出1个，那缓冲池的数据将减小一，但是事实不是这样的，当我们下游执行到96个数据的时候，缓冲池才会进行一遍清理，将没有用的数据清除，上游的request就会等于128减去缓冲池里未处理的数据。<br>而MissingBackpressureException的产生原因就是上下游数据处理速度不一致，假设上游处理的更快，我们放入了128个数据，但是下游处理的事件不到96个，那么如果再发送数据的话，缓冲池接受不了 就会抛出异常，我们设置的背压策略就是为了解决这个问题的<br>我们也可以当上游在e.requested()等于0时，暂停发射数据，便可解决背压问题。</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
-
-    <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束<i class="fa fa-paw"></i>感谢阅读------</div>
+    
+</div>
       
     </div>
     
     <div>
       
+        
+
+      
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
@@ -433,480 +448,38 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/16/自定义View/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yq">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我要好好学习">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/16/自定义View/" itemprop="url">自定义View</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-16T10:59:40+08:00">
-                2018-01-16
-              </time>
+              <a href="/2018/01/16/自定义View/" rel="next" title="自定义View">
+                <i class="fa fa-chevron-left"></i> 自定义View
+              </a>
             
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/01/16/自定义View/" class="leancloud_visitors" data-flag-title="自定义View">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="自定义view"><a href="#自定义view" class="headerlink" title="自定义view"></a>自定义view</h1><ul>
-<li>protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)  进行测量<br>int widthMode = MeasureSpec.getMode(widthMeasureSpec);<br>int widthSize = MeasureSpec.getSize(widthMeasureSpec); </li>
-<li>onFinishInflate():从xml加载组件后回调</li>
-<li>onSizeChanged():组件大小改变时回调</li>
-<li>onLayout():确定显示的位置</li>
-<li>onTouchEvent():监听到触摸事件时的回调</li>
-</ul>
-<h2 id="三种实现自定义控件的方法"><a href="#三种实现自定义控件的方法" class="headerlink" title="三种实现自定义控件的方法"></a>三种实现自定义控件的方法</h2><ol>
-<li>对现有控件进行拓展</li>
-<li>通过组合来实现新的控件</li>
-<li>重写view来实现全新的控件</li>
-</ol>
-<h2 id="测量模式"><a href="#测量模式" class="headerlink" title="测量模式"></a>测量模式</h2><ol>
-<li>UNSPECIFIED    父容器没有对当前View有任何限制，当前View可以任意取尺寸 </li>
-<li>EXACTLY    当前的尺寸就是当前View应该取的尺寸   match_parent以及固定尺寸</li>
-<li>AT_MOST    当前尺寸是当前View能取的最大尺寸  wrap_content<br>new Canvas(bitmap)canvas上的所有绘制都是基于bitmap上的</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/16/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yq">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我要好好学习">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/16/hello-world/" itemprop="url">使用说明</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-16T10:59:40+08:00">
-                2018-01-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/01/16/hello-world/" class="leancloud_visitors" data-flag-title="使用说明">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/02/21/动画/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yq">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我要好好学习">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/02/21/动画/" itemprop="url">Animation 动画深度分析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-02-21T00:00:00+08:00">
-                2016-02-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2016/02/21/动画/" class="leancloud_visitors" data-flag-title="Animation 动画深度分析">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="View-Animation"><a href="#View-Animation" class="headerlink" title="View Animation"></a>View Animation</h2><p> 视图动画，也叫Tween（补间）动画可以在一个视图容器内执行一系列简单变换（位置、大小、旋转、透明度）。譬如，如果你有一个TextView对象，您可以移动、旋转、缩放、透明度设置其文本，当然，如果它有一个背景图像，背景图像会随着文本变化。</p>
-<ol>
-<li>Alpha(透明度) 属性：用于控制动画的透明度</li>
-<li>Rotate（旋转）属性 ：可以对视图进行旋转</li>
-<li>Scale（缩放）属性：对视图进行缩放</li>
-<li>Translate属性：可以对视图进行变换</li>
-<li>AnimationSet继承自Animation，是上面四种的组合容器管理类，没有自己特有的属性，他的属性继承自Animation，当我们对set标签使用Animation的属性时会对该标签下的所有子控件都产生影响。</li>
-<li>Interpolator（插值器）属性：类似于动画以一个什么样的速率去执行动画<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">	&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;    </div><div class="line">	&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;   </div><div class="line">    android:interpolator=&quot;@[package:]anim/interpolator_resource&quot;  </div><div class="line">    android:shareInterpolator=[&quot;true&quot; | &quot;false&quot;] &gt;</div><div class="line">    &lt;alpha</div><div class="line">        android:fromAlpha=&quot;float&quot;</div><div class="line">        android:toAlpha=&quot;float&quot; /&gt;</div><div class="line">    &lt;scale</div><div class="line">        android:fromXScale=&quot;float&quot;</div><div class="line">        android:toXScale=&quot;float&quot;</div><div class="line">        android:fromYScale=&quot;float&quot;</div><div class="line">        android:toYScale=&quot;float&quot;</div><div class="line">        android:pivotX=&quot;float&quot;</div><div class="line">        android:pivotY=&quot;float&quot; /&gt;</div><div class="line">    &lt;translate</div><div class="line">        android:fromXDelta=&quot;float&quot;</div><div class="line">        android:toXDelta=&quot;float&quot;</div><div class="line">        android:fromYDelta=&quot;float&quot;</div><div class="line">        android:toYDelta=&quot;float&quot; /&gt;</div><div class="line">    &lt;rotate</div><div class="line">        android:fromDegrees=&quot;float&quot;</div><div class="line">        android:toDegrees=&quot;float&quot;</div><div class="line">        android:pivotX=&quot;float&quot;</div><div class="line">        android:pivotY=&quot;float&quot; /&gt;</div><div class="line">    &lt;set&gt;</div><div class="line">        ...</div><div class="line">    &lt;/set&gt;</div><div class="line">&lt;/set&gt;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>View类的常用动画操作方法</th>
-<th>解释 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>startAnimation(Animation animation)</td>
-<td>对当前View开始设置的Animation动画</td>
-</tr>
-<tr>
-<td>clearAnimation()</td>
-<td>取消当View在执行的Animation动画</td>
-</tr>
-</tbody>
-</table>
-<p><strong>补间动画执行之后并未改变View的真实布局属性值。我们对一个Button进行操作，将他从原来的位置移动到另一位置，但是实际响应button事件的位置，还是原来的位置。</strong><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/02/21/动画/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
+          <span class="post-nav-divider"></span>
 
-    <div>
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -914,6 +487,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTE2Mi81NzI5"></div>
+    
+  </div>
+
 
         </div>
         
@@ -933,8 +512,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -1198,6 +786,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android"><span class="nav-number">1.</span> <span class="nav-text">- Android</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rxjava的subcribe"><span class="nav-number">2.</span> <span class="nav-text">Rxjava的subcribe()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rxjava-操作符"><span class="nav-number">3.</span> <span class="nav-text">Rxjava 操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背压"><span class="nav-number">4.</span> <span class="nav-text">背压</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重点"><span class="nav-number">5.</span> <span class="nav-text">重点</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -1310,10 +914,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
@@ -1348,6 +952,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
