@@ -247,7 +247,7 @@
     <link href="http://yoursite.com/2017/12/22/Android%20%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/"/>
     <id>http://yoursite.com/2017/12/22/Android 底层知识/</id>
     <published>2017-12-21T16:00:00.000Z</published>
-    <updated>2018-01-16T07:15:40.695Z</updated>
+    <updated>2018-01-16T07:39:18.535Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Binder"><a href="#Binder" class="headerlink" title="Binder"></a>Binder</h1><p>1) 首先，Binder分为Client和Server两个进程。<br>2) 图中的IPC就是进程间通信的意思。<br>图中的ServiceManager，负责把Binder Server注册到一个容器中。<br>ServiceManager比喻成电话局，存储着每个住宅的座机电话，还是很恰当的。张三给李四打电话，拨打电话号码，会先转接到电话局，电话局的接线员查到这个电话号码的地址，因为李四的电话号码之前在电话局注册过，所以就能拨通；没注册，就会提示该号码不存在。<br>对照着Android Binder机制，对着上面这图，张三就是Binder Client，李四就是Binder Server，电话局就是ServiceManager，电话局的接线员在这个过程中做了很多事情，对应着图中的Binder驱动</p>
 <p><img src="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223325025-1448613892.png" alt=""></p>
@@ -278,6 +278,8 @@
     
       <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
     
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
     
   </entry>
   
