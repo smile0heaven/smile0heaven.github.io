@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-19T09:33:18.914Z</updated>
+  <updated>2017-06-20T08:17:51.539Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,27 +17,24 @@
   
   <entry>
     <title>自定义View</title>
-    <link href="http://yoursite.com/2017/06/19/%E8%87%AA%E5%AE%9A%E4%B9%89View/"/>
-    <id>http://yoursite.com/2017/06/19/自定义View/</id>
-    <published>2017-06-19T07:24:23.308Z</published>
-    <updated>2017-06-19T09:33:18.914Z</updated>
+    <link href="http://yoursite.com/2018/01/16/%E8%87%AA%E5%AE%9A%E4%B9%89View/"/>
+    <id>http://yoursite.com/2018/01/16/自定义View/</id>
+    <published>2018-01-16T02:59:40.554Z</published>
+    <updated>2017-06-20T08:17:51.539Z</updated>
     
-    <content type="html"><![CDATA[<p>#自定义view#</p>
-<ul>
+    <content type="html"><![CDATA[<h1 id="自定义view"><a href="#自定义view" class="headerlink" title="自定义view"></a>自定义view</h1><ul>
 <li>protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)  进行测量<br>int widthMode = MeasureSpec.getMode(widthMeasureSpec);<br>int widthSize = MeasureSpec.getSize(widthMeasureSpec); </li>
 <li>onFinishInflate():从xml加载组件后回调</li>
 <li>onSizeChanged():组件大小改变时回调</li>
 <li>onLayout():确定显示的位置</li>
 <li>onTouchEvent():监听到触摸事件时的回调</li>
 </ul>
-<p>##三种实现自定义控件的方法##</p>
-<ol>
+<h2 id="三种实现自定义控件的方法"><a href="#三种实现自定义控件的方法" class="headerlink" title="三种实现自定义控件的方法"></a>三种实现自定义控件的方法</h2><ol>
 <li>对现有控件进行拓展</li>
 <li>通过组合来实现新的控件</li>
 <li>重写view来实现全新的控件</li>
 </ol>
-<p>##测量模式    </p>
-<ol>
+<h2 id="测量模式"><a href="#测量模式" class="headerlink" title="测量模式"></a>测量模式</h2><ol>
 <li>UNSPECIFIED    父容器没有对当前View有任何限制，当前View可以任意取尺寸 </li>
 <li>EXACTLY    当前的尺寸就是当前View应该取的尺寸   match_parent以及固定尺寸</li>
 <li>AT_MOST    当前尺寸是当前View能取的最大尺寸  wrap_content<br>new Canvas(bitmap)canvas上的所有绘制都是基于bitmap上的</li>
@@ -46,9 +43,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;#自定义view#&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)  进行测量&lt;br&gt;int widthMode = MeasureSpec.getMode
+      &lt;h1 id=&quot;自定义view&quot;&gt;&lt;a href=&quot;#自定义view&quot; class=&quot;headerlink&quot; title=&quot;自定义view&quot;&gt;&lt;/a&gt;自定义view&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;protected void onMeasure(int widthMeasureSpe
     
     </summary>
     
@@ -57,9 +53,9 @@
   
   <entry>
     <title>使用说明</title>
-    <link href="http://yoursite.com/2017/06/19/hello-world/"/>
-    <id>http://yoursite.com/2017/06/19/hello-world/</id>
-    <published>2017-06-19T07:19:06.390Z</published>
+    <link href="http://yoursite.com/2018/01/16/hello-world/"/>
+    <id>http://yoursite.com/2018/01/16/hello-world/</id>
+    <published>2018-01-16T02:59:40.553Z</published>
     <updated>2017-06-19T09:34:29.088Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
@@ -83,13 +79,13 @@
   </entry>
   
   <entry>
-    <title>动画</title>
+    <title>Animation 动画深度分析</title>
     <link href="http://yoursite.com/2016/02/21/%E5%8A%A8%E7%94%BB/"/>
     <id>http://yoursite.com/2016/02/21/动画/</id>
     <published>2016-02-20T16:00:00.000Z</published>
-    <updated>2017-06-20T08:04:55.805Z</updated>
+    <updated>2017-06-20T08:16:48.856Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Animation-动画深度分析"><a href="#Animation-动画深度分析" class="headerlink" title="Animation 动画深度分析"></a>Animation 动画深度分析</h1><h2 id="View-Animation"><a href="#View-Animation" class="headerlink" title="View Animation"></a>View Animation</h2><p> 视图动画，也叫Tween（补间）动画可以在一个视图容器内执行一系列简单变换（位置、大小、旋转、透明度）。譬如，如果你有一个TextView对象，您可以移动、旋转、缩放、透明度设置其文本，当然，如果它有一个背景图像，背景图像会随着文本变化。</p>
+    <content type="html"><![CDATA[<h2 id="View-Animation"><a href="#View-Animation" class="headerlink" title="View Animation"></a>View Animation</h2><p> 视图动画，也叫Tween（补间）动画可以在一个视图容器内执行一系列简单变换（位置、大小、旋转、透明度）。譬如，如果你有一个TextView对象，您可以移动、旋转、缩放、透明度设置其文本，当然，如果它有一个背景图像，背景图像会随着文本变化。</p>
 <ol>
 <li>Alpha(透明度) 属性：用于控制动画的透明度</li>
 <li>Rotate（旋转）属性 ：可以对视图进行旋转</li>
@@ -258,7 +254,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Animation-动画深度分析&quot;&gt;&lt;a href=&quot;#Animation-动画深度分析&quot; class=&quot;headerlink&quot; title=&quot;Animation 动画深度分析&quot;&gt;&lt;/a&gt;Animation 动画深度分析&lt;/h1&gt;&lt;h2 id=&quot;View-Animation&quot;&gt;&lt;a href=&quot;#View-Animation&quot; class=&quot;headerlink&quot; title=&quot;View Animation&quot;&gt;&lt;/a&gt;View Animation&lt;/h2&gt;&lt;p&gt; 视图动画，也叫Tween（补间）动画可以在一个视图容器内执行一系列简单变换（位置、大小、旋转、透明度）。譬如，如果你有一个TextView对象，您可以移动、旋转、缩放、透明度设置其文本，当然，如果它有一个背景图像，背景图像会随着文本变化。&lt;/p&gt;
+      &lt;h2 id=&quot;View-Animation&quot;&gt;&lt;a href=&quot;#View-Animation&quot; class=&quot;headerlink&quot; title=&quot;View Animation&quot;&gt;&lt;/a&gt;View Animation&lt;/h2&gt;&lt;p&gt; 视图动画，也叫Tween（补间）动画可以在一个视图容器内执行一系列简单变换（位置、大小、旋转、透明度）。譬如，如果你有一个TextView对象，您可以移动、旋转、缩放、透明度设置其文本，当然，如果它有一个背景图像，背景图像会随着文本变化。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Alpha(透明度) 属性：用于控制动画的透明度&lt;/li&gt;
 &lt;li&gt;Rotate（旋转）属性 ：可以对视图进行旋转&lt;/li&gt;
@@ -290,14 +286,8 @@
     
     </summary>
     
-      <category term="Sports" scheme="http://yoursite.com/categories/Sports/"/>
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
     
-      <category term="Baseball" scheme="http://yoursite.com/categories/Sports/Baseball/"/>
-    
-    
-      <category term="Injury" scheme="http://yoursite.com/tags/Injury/"/>
-    
-      <category term="Fight" scheme="http://yoursite.com/tags/Fight/"/>
     
   </entry>
   
