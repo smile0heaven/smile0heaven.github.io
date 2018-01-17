@@ -408,25 +408,16 @@
       
         
           
-            <h1 id="自定义view"><a href="#自定义view" class="headerlink" title="自定义view"></a>自定义view</h1><ul>
-<li>protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)  进行测量<br>int widthMode = MeasureSpec.getMode(widthMeasureSpec);<br>int widthSize = MeasureSpec.getSize(widthMeasureSpec); </li>
-<li>onFinishInflate():从xml加载组件后回调</li>
-<li>onSizeChanged():组件大小改变时回调</li>
-<li>onLayout():确定显示的位置</li>
-<li>onTouchEvent():监听到触摸事件时的回调</li>
-</ul>
-<h2 id="三种实现自定义控件的方法"><a href="#三种实现自定义控件的方法" class="headerlink" title="三种实现自定义控件的方法"></a>三种实现自定义控件的方法</h2><ol>
-<li>对现有控件进行拓展</li>
-<li>通过组合来实现新的控件</li>
-<li>重写view来实现全新的控件</li>
-</ol>
-<h2 id="测量模式"><a href="#测量模式" class="headerlink" title="测量模式"></a>测量模式</h2><ol>
-<li>UNSPECIFIED    父容器没有对当前View有任何限制，当前View可以任意取尺寸 </li>
-<li>EXACTLY    当前的尺寸就是当前View应该取的尺寸   match_parent以及固定尺寸</li>
-<li>AT_MOST    当前尺寸是当前View能取的最大尺寸  wrap_content<br>new Canvas(bitmap)canvas上的所有绘制都是基于bitmap上的</li>
-</ol>
-
-          
+          自定义view
+protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)  进行测量int widthMode = MeasureSpec.getMode(widthMeasureSpec);int widthSize
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/16/自定义View/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -584,17 +575,15 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/16/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -964,19 +953,18 @@
       
         
           
-            <ol>
-<li>泛型中上界和下界的定义<br>上界 &lt;? extend Fruit&gt;<br>下界 &lt;? super Apple&gt;  </li>
-</ol>
-<p>2.上界和下界的特点<br>上界的list只能get，不能add（确切地说不能add出除null之外的对象，包括Object）<br>下界的list只能add，不能get<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">import java.util.ArrayList;  </div><div class="line">import java.util.List;  </div><div class="line">  </div><div class="line">class Fruit &#123;&#125;  </div><div class="line">class Apple extends Fruit &#123;&#125;  </div><div class="line">class Jonathan extends Apple &#123;&#125;  </div><div class="line">class Orange extends Fruit &#123;&#125;  </div><div class="line">  </div><div class="line">public class CovariantArrays &#123;  </div><div class="line">  public static void main(String[] args) &#123;  </div><div class="line">    //上界  </div><div class="line">    List&lt;? extends Fruit&gt; flistTop = new ArrayList&lt;Apple&gt;();  </div><div class="line">    flistTop.add(null);  </div><div class="line">    //add Fruit对象会报错  </div><div class="line">    //flist.add(new Fruit());  </div><div class="line">    Fruit fruit1 = flistTop.get(0);  </div><div class="line">  </div><div class="line">    //下界  </div><div class="line">    List&lt;? super Apple&gt; flistBottem = new ArrayList&lt;Apple&gt;();  </div><div class="line">    flistBottem.add(new Apple());  </div><div class="line">    flistBottem.add(new Jonathan());  </div><div class="line">    //get Apple对象会报错  </div><div class="line">    //Apple apple = flistBottem.get(0);  </div><div class="line">  &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="这些特点的原因"><a href="#这些特点的原因" class="headerlink" title="这些特点的原因"></a>这些特点的原因</h3><h4 id="上界-lt-extend-Fruit-gt"><a href="#上界-lt-extend-Fruit-gt" class="headerlink" title="上界 &lt;? extend Fruit&gt;"></a>上界 &lt;? extend Fruit&gt;</h4><p>表示所有继承Fruit的子类，但是具体是哪个子类，无法确定，所以调用add的时候，要add什么类型，谁也不知道。但是get的时候，不管是什么子类，不管追溯多少辈，肯定有个父类是Fruit，所以，我都可以用最大的父类Fruit接着，也就是把所有的子类向上转型为Fruit。  </p>
-<h4 id="下界-lt-super-Apple-gt"><a href="#下界-lt-super-Apple-gt" class="headerlink" title="下界 &lt;? super Apple&gt;"></a>下界 &lt;? super Apple&gt;</h4><p>表示Apple的所有父类，包括Fruit，一直可以追溯到老祖宗Object 。那么当我add的时候，我不能add Apple的父类，因为不能确定List里面存放的到底是哪个父类。但是我可以add Apple及其子类。因为不管我的子类是什么类型，它都可以向上转型为Apple及其所有的父类甚至转型为Object。但是当我get的时候，Apple的父类这么多，我用什么接着呢，除了Object，其他的都接不住。<br>所以，归根结底可以用一句话表示，那就是编译器可以支持向上转型，但不支持向下转型。具体来讲，我可以把Apple对象赋值给Fruit的引用，但是如果把Fruit对象赋值给Apple的引用就必须得用cast。</p>
-<h2 id="kotlin"><a href="#kotlin" class="headerlink" title="kotlin"></a>kotlin</h2><p>1、 Kotlin的泛型使用基本和Java一致</p>
-<p>2、 Java的&lt;? extends T&gt; 相当于 Kotlin的<out t=""> ，Java的&lt;? super T&gt; 相当于 Kotlin的<in t=""></in></out></p>
-<p>3、<out t=""> 只能生产(出参)， <in t=""> 只能消费(入参)</in></out></p>
-<p>4、<out t=""> 只能生产的原因是编译器无法确认什么对象符合那个未知的 T 的子类型，只知道一定返回T，<in t=""> 只能消费的原因是无法确认T超类的具体类型</in></out></p>
-<p>5、&lt;<em>&gt;相当于java中的无泛型。对于 Foo <out t="">，其中 T 是一个具有上界的协变类型参数,Foo &lt;</out></em>&gt; 等价于 Foo <out any="">;对于 Foo <in t="">，其中 T 是一个逆变类型参数，Foo &lt;*&gt; 等价于 Foo <in nothing=""></in></in></out></p>
-
           
+泛型中上界和下界的定义上界 &lt;? extend Fruit&gt;下界 &lt;? super Apple&gt;  
+
+2.上界和下界的特点上界的list只能get，不能add（确切地说不能add出除null之外的对象，包括Object）下界的list只能add，不能get12345678
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/10/泛型/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1156,37 +1144,20 @@
       
         
           
-            <ol>
-<li>今年至少要使用kotlin写一个项目，熟悉基本的kotlin语法（使用官方的MVP）</li>
-<li>熟练使用RxJava2 并不限于网络请求使用</li>
-<li>抽时间发布博客，多学一下面试相关的题目</li>
-<li>学习使用gradle，包括多渠道打包以及分类型打包</li>
-<li>了解binder机制，知道Android启动过程，多了解一下底层相关的知识</li>
-<li>学习插件化，组件化，热更新</li>
-<li>了解一下Dagger</li>
-<li>看完Java编程思想以及Android开发艺术探索</li>
-</ol>
-<p>博客内容</p>
-<ol>
-<li>性能优化</li>
-<li>内存泄漏与内存溢出</li>
-<li>回收机制</li>
-<li>Glide源码分析</li>
-<li>事件分发机制</li>
-<li>View绘制流程</li>
-<li>Android6.0权限处理</li>
-<li>Java发射以及hook</li>
-<li>排序算法</li>
-<li>设计模式学习</li>
-<li>热更新以及插件化  </li>
-<li>Android每一代更新的功能</li>
-<li>Http相关知识</li>
-<li>自定义view</li>
-<li>完善gradle的博客内容</li>
-</ol>
-<p>Emmmm…等待补充</p>
-
           
+今年至少要使用kotlin写一个项目，熟悉基本的kotlin语法（使用官方的MVP）
+熟练使用RxJava2 并不限于网络请求使用
+抽时间发布博客，多学一下面试相关的题目
+学习使用gradle，包括多渠道打包以及分类型打包
+了解binder机制，知道Android启动过程，多了解一下底层相关的知识
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/01/新年新Flag/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1366,15 +1337,15 @@
       
         
           
-            <h3 id="onFinishInflate"><a href="#onFinishInflate" class="headerlink" title="onFinishInflate"></a>onFinishInflate</h3><p>View.inflate (context,R.layout.my_view,null)当加载完成xml后，就会执行这个方法。<br>在该方法中将refreshContent,refreshHead,refreshfoot确认<br>refreshHead,refreshfoot这两个类 是接口<br>RefreshFooterWrapper，RefreshHeaderWrapper是该接口包装类，该类主要是针对上拉下拉操作过程的一些手势和时刻的动画 View不能超过3个</p>
-<h3 id="RefreshHeaderWrapper"><a href="#RefreshHeaderWrapper" class="headerlink" title="RefreshHeaderWrapper"></a>RefreshHeaderWrapper</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 刷新头部包装</div><div class="line"> * Created by SCWANG on 2017/5/26.</div><div class="line"> */</div><div class="line"></div><div class="line">public class RefreshHeaderWrapper implements RefreshHeader &#123;</div><div class="line"></div><div class="line">    private View mWrapperView;</div><div class="line">    private SpinnerStyle mSpinnerStyle;</div><div class="line"></div><div class="line">    public RefreshHeaderWrapper(View wrapper) &#123;</div><div class="line">        this.mWrapperView = wrapper;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @NonNull</div><div class="line">    public View getView() &#123;</div><div class="line">        return mWrapperView;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public int onFinish(@NonNull RefreshLayout layout, boolean success) &#123;</div><div class="line">        return 0;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override@Deprecated</div><div class="line">    public void setPrimaryColors(@ColorInt int ... colors) &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @NonNull</div><div class="line">    @Override</div><div class="line">    public SpinnerStyle getSpinnerStyle() &#123;</div><div class="line">        if (mSpinnerStyle != null) &#123;</div><div class="line">            return mSpinnerStyle;</div><div class="line">        &#125;</div><div class="line">        ViewGroup.LayoutParams params = mWrapperView.getLayoutParams();</div><div class="line">        if (params instanceof SmartRefreshLayout.LayoutParams) &#123;</div><div class="line">            mSpinnerStyle = ((SmartRefreshLayout.LayoutParams) params).spinnerStyle;</div><div class="line">            if (mSpinnerStyle != null) &#123;</div><div class="line">                return mSpinnerStyle;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        if (params != null) &#123;</div><div class="line">            if (params.height == ViewGroup.LayoutParams.MATCH_PARENT) &#123;</div><div class="line">                return mSpinnerStyle = SpinnerStyle.Scale;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return mSpinnerStyle = SpinnerStyle.Translate;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onInitialized(@NonNull RefreshKernel kernel, int height, int extendHeight) &#123;</div><div class="line">        ViewGroup.LayoutParams params = mWrapperView.getLayoutParams();</div><div class="line">        if (params instanceof SmartRefreshLayout.LayoutParams) &#123;</div><div class="line">            kernel.requestDrawBackgoundForHeader(((SmartRefreshLayout.LayoutParams) params).backgroundColor);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public boolean isSupportHorizontalDrag() &#123;</div><div class="line">        return false;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onHorizontalDrag(float percentX, int offsetX, int offsetMax) &#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onPullingDown(float percent, int offset, int headHeight, int extendHeight) &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onReleasing(float percent, int offset, int headHeight, int extendHeight) &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onRefreshReleased(RefreshLayout layout, int headerHeight, int extendHeight) &#123;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onStartAnimator(@NonNull RefreshLayout layout, int headHeight, int extendHeight) &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onStateChanged(RefreshLayout refreshLayout, RefreshState oldState, RefreshState newState) &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="RefreshHeader"><a href="#RefreshHeader" class="headerlink" title="RefreshHeader"></a>RefreshHeader</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**</div><div class="line"> * 刷新头部</div><div class="line"> * Created by SCWANG on 2017/5/26.</div><div class="line"> */</div><div class="line">@RestrictTo(&#123;LIBRARY_GROUP,SUBCLASSES&#125;)</div><div class="line">public interface RefreshHeader extends RefreshInternal &#123;</div><div class="line">    /**</div><div class="line">     * 手指拖动下拉（会连续多次调用）</div><div class="line">     * @param percent 下拉的百分比 值 = offset/headerHeight (0 - percent - (headerHeight+extendHeight) / headerHeight )</div><div class="line">     * @param offset 下拉的像素偏移量  0 - offset - (headerHeight+extendHeight)</div><div class="line">     * @param headerHeight Header的高度</div><div class="line">     * @param extendHeight Header的扩展高度</div><div class="line">     */</div><div class="line">    void onPullingDown(float percent, int offset, int headerHeight, int extendHeight);</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 手指释放之后的持续动画</div><div class="line">     * @param percent 下拉的百分比 值 = offset/headerHeight (0 - percent - (headerHeight+extendHeight) / headerHeight )</div><div class="line">     * @param offset 下拉的像素偏移量  0 - offset - (headerHeight+extendHeight)</div><div class="line">     * @param headerHeight Header的高度</div><div class="line">     * @param extendHeight Header的扩展高度</div><div class="line">     */</div><div class="line">    void onReleasing(float percent, int offset, int headerHeight, int extendHeight);</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 释放时刻（调用一次，将会触发加载）</div><div class="line">     * @param layout RefreshLayout</div><div class="line">     * @param headerHeight HeaderHeight</div><div class="line">     * @param extendHeight extendHeaderHeight or extendFooterHeight</div><div class="line">     */</div><div class="line">    void onRefreshReleased(RefreshLayout layout, int headerHeight, int extendHeight);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="RefreshInternal"><a href="#RefreshInternal" class="headerlink" title="RefreshInternal"></a>RefreshInternal</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 刷新内部组件</div><div class="line"> * Created by SCWANG on 2017/5/26.</div><div class="line"> */</div><div class="line">@RestrictTo(&#123;LIBRARY_GROUP,SUBCLASSES&#125;)</div><div class="line">public interface RefreshInternal extends OnStateChangedListener &#123;</div><div class="line">    /**</div><div class="line">     * 获取实体视图</div><div class="line">     */</div><div class="line">    @NonNull</div><div class="line">    View getView();</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 获取变换方式 &#123;@link SpinnerStyle&#125; 必须返回 非空</div><div class="line">     */</div><div class="line">    @NonNull</div><div class="line">    SpinnerStyle getSpinnerStyle();</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 设置主题颜色</div><div class="line">     * @param colors 对应Xml中配置的 srlPrimaryColor srlAccentColor</div><div class="line">     */</div><div class="line">    void setPrimaryColors(@ColorInt int... colors);</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 尺寸定义完成 （如果高度不改变（代码修改：setHeader），只调用一次, 在RefreshLayout#onMeasure中调用）</div><div class="line">     * @param kernel RefreshKernel</div><div class="line">     * @param height HeaderHeight or FooterHeight</div><div class="line">     * @param extendHeight extendHeaderHeight or extendFooterHeight</div><div class="line">     */</div><div class="line">    void onInitialized(@NonNull RefreshKernel kernel, int height, int extendHeight);</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 水平方向的拖动</div><div class="line">     * @param percentX 下拉时，手指水平坐标对屏幕的占比（0 - percentX - 1）</div><div class="line">     * @param offsetX 下拉时，手指水平坐标对屏幕的偏移（0 - offsetX - LayoutWidth）</div><div class="line">     */</div><div class="line">    void onHorizontalDrag(float percentX, int offsetX, int offsetMax);</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 开始动画</div><div class="line">     * @param layout RefreshLayout</div><div class="line">     * @param height HeaderHeight or FooterHeight</div><div class="line">     * @param extendHeight extendHeaderHeight or extendFooterHeight</div><div class="line">     */</div><div class="line">    void onStartAnimator(@NonNull RefreshLayout layout, int height, int extendHeight);</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 动画结束</div><div class="line">     * @param layout RefreshLayout</div><div class="line">     * @param success 数据是否成功刷新或加载</div><div class="line">     * @return 完成动画所需时间 如果返回 Integer.MAX_VALUE 将取消本次完成事件，继续保持原有状态</div><div class="line">     */</div><div class="line">    int onFinish(@NonNull RefreshLayout layout, boolean success);</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 是否支持水平方向的拖动（将会影响到onHorizontalDrag的调用）</div><div class="line">     * @return 水平拖动需要消耗更多的时间和资源，所以如果不支持请返回false</div><div class="line">     */</div><div class="line">    boolean isSupportHorizontalDrag();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="onAttachedToWindow"><a href="#onAttachedToWindow" class="headerlink" title="onAttachedToWindow"></a>onAttachedToWindow</h3><p>判断是不是有head和foot 布局 没有 加载默认布局<br>对head和foot进行默认下拉上拉的监听<br>如果有固定在content的布局进行添加</p>
-<h3 id="onMeasure"><a href="#onMeasure" class="headerlink" title="onMeasure"></a>onMeasure</h3><p>计算head foot 以及content的尺寸</p>
-<h3 id="onLayout"><a href="#onLayout" class="headerlink" title="onLayout"></a>onLayout</h3><p>计算head foot 以及content在页面上的位置</p>
-
-          
+          onFinishInflateView.inflate (context,R.layout.my_view,null)当加载完成xml后，就会执行这个方法。在该方法中将refreshContent,refreshHead,refreshfoot确认refreshHead,refreshfoot这两个
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/29/SmartRefreshLayout/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1554,27 +1525,15 @@
       
         
           
-            <h1 id="Binder"><a href="#Binder" class="headerlink" title="Binder"></a>Binder</h1><p>1) 首先，Binder分为Client和Server两个进程。<br>2) 图中的IPC就是进程间通信的意思。<br>图中的ServiceManager，负责把Binder Server注册到一个容器中。<br>ServiceManager比喻成电话局，存储着每个住宅的座机电话，还是很恰当的。张三给李四打电话，拨打电话号码，会先转接到电话局，电话局的接线员查到这个电话号码的地址，因为李四的电话号码之前在电话局注册过，所以就能拨通；没注册，就会提示该号码不存在。<br>对照着Android Binder机制，对着上面这图，张三就是Binder Client，李四就是Binder Server，电话局就是ServiceManager，电话局的接线员在这个过程中做了很多事情，对应着图中的Binder驱动</p>
-<p><img src="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223325025-1448613892.png" alt=""></p>
-<p> 3) Client想要直接调用Server的add方法，是不可以的，因为它们在不同的进程中，这时候就需要Binder来帮忙了。<br>首先是Server在SM这个容器中注册。其次，Client想要调用Server的add方法，就需要先获取Server对象， 但是SM不会把真正的Server对象返回给Client，而是把Server的一个代理对象返回给Client，也就是Proxy。然后，Client调用Proxy的add方法，SM会帮他去调用Server的add方法，并把结果返回给Client。<br> <img src="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223354650-984999229.png" alt=""></p>
-<h1 id="AIDL"><a href="#AIDL" class="headerlink" title="AIDL"></a>AIDL</h1><p> Android系统中很多系统服务都是aidl，比如说剪切板<br> AIDL中需要知道下面几个类：</p>
-<ul>
-<li>IBinder</li>
-<li>IInterface</li>
-<li>Binder</li>
-<li>Proxy</li>
-<li>Stub </li>
-</ul>
-<p>当我们自定义一个aidl文件时（比如MyAidl.aidl，里面有一个sum方法），Android Studio会帮我们生成一个类文件MyAidl.java，如下图所示：<br> <img src="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223432791-1010721944.png" alt=""></p>
-<p>MyAidl.java这个生成文件中，包括MyAidl接口，以及Stub和Proxy两个实现了MyAidl接口的类，其中Stub是定义在MyAidl接口中的，而Proxy则定义在Stub类中。为什么要嵌套那么多层级，因为有多个AIDL类的时候，Stub和Proxy类就会重名，把它们放在各自的AIDL接口中，就必须MyAidl.Stub这样去使用，就区分开了。<br> <img src="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223504650-228437964.png" alt=""><br> 1) 从Client看起，对于AIDL的使用者，我们这么写程序：MyAidl.Stub.asInterface(某IBinder对象).sum(1, 2);         //最好在执行sum方法前判空。<br>asInterface方法的作用是判断参数——也就是IBinder对象，和自己是否在同一个进程：</p>
-<ul>
-<li>是，则直接转换、直接使用，接下来就跟Binder跨进程通信无关啦；</li>
-<li><p>否，则把这个IBinder参数包装成一个Proxy对象，这时调用Stub的sum方法，间接调用Proxy的sum方法。return new MyAidl.Stub.Proxy(obj);<br>2) Proxy在自己的sum方法中，会使用Parcelable来准备数据，把函数名称、函数参数都写入_data，让_reply接收函数返回值。最后使用IBinder的transact方法，把数据就传给Binder的Server端了。mRemote.transact(Stub.TRANSACTION_addBook, _data, _reply, 0); //这里的mRemote就是asInterface方法传过来的obj参数</p>
-<p>3) Server则是通过onTransact方法接收Client进程传过来的数据，包括函数名称、函数参数，找到对应的函数，这里是sum，把参数喂进去，得到结果，返回。<br>所以onTransact函数经历了读数据–&gt;执行要调用的函数–&gt;把执行结果再写数据的过程</p>
-</li>
-</ul>
-
-          
+          Binder1) 首先，Binder分为Client和Server两个进程。2) 图中的IPC就是进程间通信的意思。图中的ServiceManager，负责把Binder Server注册到一个容器中。ServiceManager比喻成电话局，存储着每个住宅的座机电话，还是很恰当的。张三给李四打电话
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/22/Android 底层知识/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1754,77 +1713,15 @@
       
         
           
-            <h1 id="Android-动态加载"><a href="#Android-动态加载" class="headerlink" title="Android 动态加载"></a>Android 动态加载</h1><h2 id="JVM加载机制"><a href="#JVM加载机制" class="headerlink" title="JVM加载机制"></a>JVM加载机制</h2><p>类加载机制：虚拟机把描述类的数据从Class文件加载到内存，并对数据进行校验、转换解析、初始化，最终形成可以被虚拟机直接使用的Java类型<br>从类被加载到虚拟机内存中开始，到卸载出内存为止，类的生命周期包括加载（Loading）、验证（Verification）、准备（Preparation）、解析（Resolution）、初始化（Initialization）、使用（Using）和卸载（Unloading）7个阶段。</p>
-<ul>
-<li><strong>加载</strong> </li>
-</ul>
-<ol>
-<li><p>通过一个类的全限定名获取定义这个类的二进制流</p>
-</li>
-<li><p>将这个字节流代表的静态存储结构转化为方法区的运行时数据结构</p>
-</li>
-<li><p>在Java堆中生成一个代表这个类的java.lang.Class对象，作为方法区这些数据的访问入口</p>
-</li>
-</ol>
-<ul>
-<li><strong>验证</strong></li>
-</ul>
-<p>确保Class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。</p>
-<ol>
-<li>文件格式验证</li>
-<li>元数据验证</li>
-<li>字节码验证</li>
-<li>符号引用验证</li>
-</ol>
-<ul>
-<li><strong>准备</strong></li>
-</ul>
-<p>虚拟机在准备阶段为类变量（static修饰的变量）分配内存，并设置类变量初始值。这些内存都将在方法区分配</p>
-<p>有两个个方面需要特别强调：</p>
-<ol>
-<li><p>该阶段进行内存分配的仅包括类变量，不包括实例变量，实例变量将在对象初始化时随对象一起分配在堆内存中</p>
-</li>
-<li><p>这里所说的初始值“通常情况下”是指数据类型的零值，如一个类变量定义为：public static int a =1;，变量a在准备阶段之后的值为0而不是1</p>
-</li>
-</ol>
-<p>程序编译后产生将a赋值为1的putstatic指令，并将该条指令存放在类构造器()中，故a赋值为1的动作将在初始化阶段完成</p>
-<p>如果类字段的字段属性表中包含ConstantValue属性，那在准备阶段变量就会被初始化为ConstantValue属性所指定的值，即如果a变量定义变为public final static int a = 1;，编译时javac会为a生成ConstantValue属性，准备阶段虚拟机就会根据ConstantValue的设置将a的值置为1</p>
-<ul>
-<li><strong>解析</strong></li>
-</ul>
-<p>解析阶段是虚拟机将常量池中的符号引用（以一组符号来描述所引用的目标，符号可以是任何形式的字面量，只要使用时可以无歧义的定位到目标即可。符号引用与虚拟机实现的内存布局无关，引用目标并不一定已经加载到内存中）替换为直接引用（直接指向目标的指针、相对偏移量或一个能间接定位到目标的句柄，直接引用与虚拟机实现的内存布局相关，如果有了直接引用，引用目标必定已经加载到内存中）的过程</p>
-<ul>
-<li><strong>初始化</strong></li>
-</ul>
-<ol>
-<li><p>遇到new（使用new关键字实例化对象）、getstatic（获取一个类的静态字段，final修饰符修饰静态字段除外）、putstatic（设置一个类的静态字段，final修饰符修饰的静态字段除外）和invokestatic（调用一个类的静态方法）这4条字节码指令时，如果类还没有初始化，则必须首先对其初始化</p>
-</li>
-<li><p>使用java.lang.reflect包中的方法对类进行反射调用时，如果类还没有初始化，则必须首先对其初始化</p>
-</li>
-<li><p>当初始化一个类时，如果其父类还没有初始化，则必须首先初始化其父类</p>
-</li>
-<li><p>当虚拟机启动时，需要指定一个主类（main方法所在的类），虚拟机会首选初始化这个主类</p>
-</li>
-</ol>
-<h3 id="Java的加载方式通过JVM，Android使用classLoader进行加载，该类为抽象类，一般使用DexClassLoader和PathClassLoader进行加载"><a href="#Java的加载方式通过JVM，Android使用classLoader进行加载，该类为抽象类，一般使用DexClassLoader和PathClassLoader进行加载" class="headerlink" title="Java的加载方式通过JVM，Android使用classLoader进行加载，该类为抽象类，一般使用DexClassLoader和PathClassLoader进行加载"></a><strong>Java的加载方式通过JVM，Android使用classLoader进行加载，该类为抽象类，一般使用DexClassLoader和PathClassLoader进行加载</strong></h3><ul>
-<li>DexClassLoader可以加载jar/apk/dex，可以从SD卡中加载未安装的apk</li>
-<li>PathClassLoader只能加载系统中已经安装过的apk</li>
-</ul>
-<p>热更新就是通过DexClassLoader来加载新的apk<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">loadApk</span><span class="params">(String apkPath)</span> </span>&#123;   </div><div class="line"> Log.v(<span class="string">"loadDexClasses"</span>, <span class="string">"Dex Preparing to loadDexClasses!"</span>);   </div><div class="line"> File dexOpt = <span class="keyword">this</span>.getDir(<span class="string">"dexOpt"</span>, MODE_PRIVATE);    </div><div class="line"> <span class="comment">//第一个参数被解压的apk路径，第二个解压后的.dex文件的存储路径，三os库的存放路径  ，四 父亲加载器，一般为context.getClassLoader()</span></div><div class="line"> <span class="keyword">final</span> DexClassLoader classloader = <span class="keyword">new</span> DexClassLoader(apkPath,dexOpt.getAbsolutePath(),      </div><div class="line">      <span class="keyword">null</span>,               </div><div class="line"> <span class="keyword">this</span>.getClassLoader());   </div><div class="line">   Log.v(<span class="string">"loadDexClasses"</span>, <span class="string">"Searching for class : "</span>                + <span class="string">"com.registry.Registry"</span>);       </div><div class="line"> <span class="keyword">try</span> &#123;        </div><div class="line">    Class&lt;?&gt; classToLoad = (Class&lt;?&gt;) classloader.loadClass(<span class="string">"com.dexclassdemo.liuguangli.apkbeloaded.ClassToBeLoad"</span>);          </div><div class="line">   Object instance = classToLoad.newInstance();         </div><div class="line">   Method method = classToLoad.getMethod(<span class="string">"method"</span>);    </div><div class="line">   method.invoke(instance);   </div><div class="line"> &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123; </div><div class="line">       e.printStackTrace();     </div><div class="line">   &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;   </div><div class="line">     e.printStackTrace();      </div><div class="line">  &#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;     </div><div class="line">     e.printStackTrace();      </div><div class="line">  &#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;    </div><div class="line">    e.printStackTrace();     </div><div class="line">   &#125; <span class="keyword">catch</span> (InstantiationException e) &#123;         </div><div class="line">    e.printStackTrace();       </div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>如何加载另一个apk中的资源到当前应用中<br>加载资源一般使用Resourse，最终实际获取资源是通过一个AssetManager</p>
-<ul>
-<li>如何获取 AssetManager 对象:<br>AssetManager 的构造函数没有对 api 公开，不能使用 new 创建；context .getAssets() 可用获取当前上下文环境的 AssetManager；利用反射 AssetManager.class.newInstance() 这样可用获取对象。  </li>
-<li>如何通过 AssetManager 对象获取插件中apk的资源<br>public native final int addAssetPath(String path);</li>
-</ul>
-<p>使用方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.activity_main);</div><div class="line">    ImageView imageView = (ImageView) findViewById(R.id.icon);</div><div class="line">    TextView textView = (TextView) findViewById(R.id.text);</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     *  插件apk路径</div><div class="line">     */</div><div class="line">    String apkPath =Environment.getExternalStorageDirectory()+<span class="string">"/apkbeloaded-debug.apk"</span>;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     *  插件资源对象</div><div class="line">     */</div><div class="line">     <span class="function"><span class="keyword">public</span> Resources <span class="title">getBundleResource</span><span class="params">(Context context, String apkPath)</span></span>&#123;</div><div class="line">     AssetManager assetManager = createAssetManager(apkPath);</div><div class="line">     Resources resources =  <span class="keyword">new</span> Resources(assetManager,context.getResources().getDisplayMetrics(), context.getResources().getConfiguration());</div><div class="line">    <span class="comment">/**</span></div><div class="line">     *获取图片资源</div><div class="line">     */</div><div class="line">    Drawable drawable = resources.getDrawable(resources.getIdentifier(<span class="string">"icon_be_load"</span>, <span class="string">"drawable"</span>,</div><div class="line">        <span class="string">"laodresource.demo.com.apkbeloaded"</span>));</div><div class="line">    <span class="comment">/**</span></div><div class="line">     *  获取文本资源</div><div class="line">     */</div><div class="line">    String text = resources.getString(resources.getIdentifier(<span class="string">"text_beload"</span>,<span class="string">"string"</span>,</div><div class="line">        <span class="string">"laodresource.demo.com.apkbeloaded"</span>));</div><div class="line"></div><div class="line">    imageView.setImageDrawable(drawable);</div><div class="line">    textView.setText(text);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> AssetManager <span class="title">createAssetManager</span><span class="params">(String apkPath)</span> </span>&#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        AssetManager assetManager = AssetManager.class.newInstance();</div><div class="line">        AssetManager.class.getDeclaredMethod(<span class="string">"addAssetPath"</span>, String.class).invoke(</div><div class="line">            assetManager, apkPath);</div><div class="line">        <span class="keyword">return</span> assetManager;</div><div class="line">    &#125; <span class="keyword">catch</span> (Throwable th) &#123;</div><div class="line">        th.printStackTrace();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>“注册”插件中的四大组件<br>在安装apk的时候，应用管理服务PackageManagerService会解析apk，解析应用程序配置文件AndroidManifest.xml，并从里面得到得到应用得到应用程序的组件Activity、Service、Broadcast Receiver和Content Provider等信息，对应用的每个组件“登记”，“登记”之后，在启动某个Activity过程在AMS执行时对比“登记”然后“查有此人”允许后续的启动行为  </p>
-<ol>
-<li>代理方式实现<br>宿主端实现一个 PluginProxyActivity，使用这个Activity代理插件中的Activity的重要事务，例如生命周期调用、contentview设置、Activity跳转等事务。PluginProxyActivity注册在宿主中，启动插件中的Activity实际就是启动PluginProxyActivity，只是加载的布局和方法逻辑不一样而已。百度的插件框架dynamic-load-apk就是使用的这种方式。</li>
-<li>“占坑”方式实现<br>启动Activity是一个复杂的过程，有很多环节：Activity.startActivity()-&gt;Activity.startActivityForResult()-&gt;Instrument.excuteStartActivity()-&gt;AMS.startActivity()。大概又这么几个环节，详细了解可以参考文章：《深入理解Activity的启动过程》。 所谓“占坑”在宿主端的AndroidManifest.xml注册一个不存在的Activity，可以取名为StubActivity，同样启动插件的Activity都是启动StubActivity，然后在启动Activity的某个环节，我们找个“临时”演员来代替StubActivity，这个临时演员就是插件中定义的Activity，这叫“瞒天过海”</li>
-</ol>
-
-          
+          Android 动态加载JVM加载机制类加载机制：虚拟机把描述类的数据从Class文件加载到内存，并对数据进行校验、转换解析、初始化，最终形成可以被虚拟机直接使用的Java类型从类被加载到虚拟机内存中开始，到卸载出内存为止，类的生命周期包括加载（Loading）、验证（Verification）、准
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/21/Android 加载机制/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2004,90 +1901,16 @@
       
         
           
-            <h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><p> 为了确定保留或终止哪些进程，系统会根据进程中<strong>正在运行的组件</strong>以及这些组件的状态，将每个进程放入“重要性层次结构”中。 例如，如果某进程托管着服务和可见 Activity，则会将此进程评定为可见进程，而不是服务进程。  </p>
-<h2 id="按照重要程度分为（第一个进程最重要，将是最后一个被终止的进程）"><a href="#按照重要程度分为（第一个进程最重要，将是最后一个被终止的进程）" class="headerlink" title="按照重要程度分为（第一个进程最重要，将是最后一个被终止的进程）"></a>按照重要程度分为（第一个进程最重要，将是最后一个被终止的进程）</h2><h3 id="1-前台进程"><a href="#1-前台进程" class="headerlink" title="1. 前台进程"></a>1. 前台进程</h3><p>当前用户操作所需要的进程，如果一个进程满足以下任一条件，即视为前台进程：</p>
-<ul>
-<li>正在交互的 Activity（已调用 Activity 的 onResume() 方法）  </li>
-<li>某个 Service，绑定到用户正在交互的 Activity  </li>
-<li>正在“前台”运行的 Service（服务已调用 startForeground()）  </li>
-<li>正执行一个生命周期回调的 Service（onCreate()、onStart() 或 onDestroy()）  </li>
-<li>正执行其 onReceive() 方法的 BroadcastReceiver  <h3 id="2-可见进程"><a href="#2-可见进程" class="headerlink" title="2. 可见进程"></a>2. 可见进程</h3>没有任何前台组件、但是仍然会影响到用户在屏幕上所见内容的进程</li>
-<li>不在前台、但仍对用户可见的 Activity（已调用其 onPause() 方法）。例如，如果前台 Activity - 启动了一个对话框，允许在其后显示上一Activity，则有可能会发生这种情况</li>
-<li>绑定到可见（或前台）Activity 的 Service。<h3 id="3-服务进程"><a href="#3-服务进程" class="headerlink" title="3. 服务进程"></a>3. 服务进程</h3>正在运行使用了startservice()方法启动的服务，但是又不属于上面两种高级别进程，虽然服务进程和用户所见内容没有关系，但是他们正在执行一些用户关心的操作（例如网络请求，播放音乐）</li>
-</ul>
-<h3 id="4-后台进程"><a href="#4-后台进程" class="headerlink" title="4. 后台进程"></a>4. 后台进程</h3><p>目前对用户不可见的Activity进程（已经调用了activity的onstop()方法），这些进程对用户体验没有任何影响 ，系统可以随时终止，这些进程 一般保存在LRU(最近最少使用)队列中，这样可以保证被销毁的是用户最早查看的进程，如果用户在Activity中做了保存状态的操作 ， 那之后重启的时候可以进行状态恢复</p>
-<h3 id="5-空进程"><a href="#5-空进程" class="headerlink" title="5. 空进程"></a>5. 空进程</h3><p>不包含任何组件的进程，保留这种进程的的唯一目的是用作缓存，以缩短下次在其中运行组件所需的启动时间  </p>
-<h2 id="按照功能分类"><a href="#按照功能分类" class="headerlink" title="按照功能分类"></a>按照功能分类</h2><h3 id="1-系统进程"><a href="#1-系统进程" class="headerlink" title="1. 系统进程"></a>1. 系统进程</h3><p>数量是固定的 ，并且长时间存在于内存中，不会被杀死</p>
-<ul>
-<li>管理硬件设备</li>
-<li>提供访问设备的基本能力</li>
-<li>管理应用进程<h3 id="init进程"><a href="#init进程" class="headerlink" title="init进程"></a>init进程</h3>系统的第一个进程，进程号为1，掌握整个系统的运行逻辑，由于Android系统在不同设备的运行方式不一定相同，为了适应各种平台和设备的需求，init进程的初始化工作通过init.rc配置文件来管理。</li>
-</ul>
-<p>init.rc中配置了系统启动的时候该做哪些事情，以及启动哪些系统进程。</p>
-<h3 id="Zygote进程"><a href="#Zygote进程" class="headerlink" title="Zygote进程"></a>Zygote进程</h3><p>zygote的中文意思是“受精卵“。这是一个很有寓意的名称：所有的应用进程都是由zygote fork出来的子进程，因此zygote进程是所有应用进程的父进程。<br>zygote进程启动之后，会启动一个socket套接字，并通过Looper一直在这个套接字上等待连接。<br><strong>所有应用进程都是通过发送数据到这个套接字上，然后由zygote进程创建的。</strong><br>在该进程中，会通过preload方法预加载应用程序需要的公共资源，这样有两个好处：  </p>
-<ul>
-<li>加快应用启动速度</li>
-<li>使用共享资源的话 ，可以节省内存<h3 id="system-server进程"><a href="#system-server进程" class="headerlink" title="system_server进程"></a>system_server进程</h3>系统服务器,Framework层的几乎所有服务都位于这个进程中。这其中就包括管理四大组件的ActivityManagerService。<br>包含很多系统服务</li>
-<li>负责网络管理的NetworkManagementService</li>
-<li>负责窗口管理的WindowManagerService</li>
-<li>负责震动管理的VibratorService</li>
-<li>负责输入管理的InputManagerService<h3 id="ActivityManagerService"><a href="#ActivityManagerService" class="headerlink" title="ActivityManagerService"></a>ActivityManagerService</h3><strong>所有应用程序的进程都是由ActivityManagerService通过socket发送请求给Zygote进程，然后由zygote fork创建的</strong><br>ActivityManagerService通过Process.start方法来请求zygote创建进程：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public static final ProcessStartResult start(final String processClass,</div><div class="line">                             final String niceName,</div><div class="line">                             int uid, int gid, int[] gids,</div><div class="line">                             int debugFlags, int mountExternal,</div><div class="line">                             int targetSdkVersion,</div><div class="line">                             String seInfo,</div><div class="line">                             String abi,</div><div class="line">                             String instructionSet,</div><div class="line">                             String appDataDir,</div><div class="line">                             String[] zygoteArgs) &#123;</div><div class="line">   try &#123;</div><div class="line">       return startViaZygote(processClass, niceName, uid, gid, gids,</div><div class="line">               debugFlags, mountExternal, targetSdkVersion, seInfo,</div><div class="line">               abi, instructionSet, appDataDir, zygoteArgs);</div><div class="line">   &#125; catch (ZygoteStartFailedEx ex) &#123;</div><div class="line">       Log.e(LOG_TAG,</div><div class="line">               &quot;Starting VM process through Zygote failed&quot;);</div><div class="line">       throw new RuntimeException(</div><div class="line">               &quot;Starting VM process through Zygote failed&quot;, ex);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><strong>对于每一个应用进程，在ActivityManagerService中，都有一个ProcessRecord与之对应。这个对象记录了应用进程的所有详细状态。</strong></p>
-<p>ProcessRecord记录了以下信息：</p>
-<ul>
-<li>activities 记录进程中运行的Activity</li>
-<li>services,excutingServices 记录进程中运行的Service</li>
-<li>receivers 记录进程中运行的BroadCastReceiver</li>
-<li>pubProviders 记录进程中运行的ContentProvider</li>
-<li>connections 记录了对于Service的连接</li>
-<li>conProviders 记录了对于ContentProvider的连接<br><img src="https://upload-images.jianshu.io/upload_images/4048192-522905df79b4c116.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="显示文本"></li>
-</ul>
-<h3 id="2-应用进程"><a href="#2-应用进程" class="headerlink" title="2. 应用进程"></a>2. 应用进程</h3><p>应用进程和ActivityManagerService所在进程（即system_server进程）是相互独立的，两个进程之间的方法通常是不能直接互相调用的。一般通过binder实现</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/4048192-862293248ed47fc7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="显示文本"></p>
-<h3 id="进程优先级算法"><a href="#进程优先级算法" class="headerlink" title="进程优先级算法"></a>进程优先级算法</h3><p><img src="https://upload-images.jianshu.io/upload_images/4048192-491f58b875a23868.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/696" alt="显示文本"></p>
-<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><p> Android单线程必须遵守两条原则：</p>
-<ul>
-<li>不要阻塞 UI 线程</li>
-<li>不要在 UI 线程之外访问 Android UI 工具包</li>
-</ul>
-<p>如果需要在工作线程中对UI进行操作，可以从其他线程访问 UI 线程 可使用：</p>
-<ul>
-<li>Activity.runOnUiThread(Runnable)</li>
-<li>View.post(Runnable)</li>
-<li>View.postDelayed(Runnable, long)<br>要通过工作线程处理更复杂的交互，可以考虑在工作线程中使用 Handler 处理来自 UI 线程的消息，也可以扩展 AsyncTask 类，此类简化了与 UI 进行交互所需执行的工作线程任务</li>
-</ul>
-<h1 id="内存回收"><a href="#内存回收" class="headerlink" title="内存回收"></a>内存回收</h1><p>内存回收分为两部分：</p>
-<ul>
-<li><strong>进程内的内存回收</strong>:通过释放进程中的资源进行内存回收</li>
-<li><strong>进程级的内存回收</strong>：通过杀死进程进行内存回收<br>进程内的内存回收分为两部分：</li>
-<li><strong>虚拟机自身的垃圾回收机制</strong></li>
-<li><strong>当系统内存发生改变的时候，通知应用程序，让开发者进行内存回收</strong><br>进程级的内存回收也分为两部分：</li>
-<li><strong>Linux OOM Killer</strong><br>当系统已经没法再分配内存的时候，内核会遍历所有的进程，对每个进程计算badness值，得分(badness)最高的进程将会被杀死。</li>
-<li><strong>LowMemoryKiller</strong><br>提供6个可以设置的内存级别，当系统内存每低于一个级别时，将oom_score_adj大于某个指定值的进程全部杀死。<br>在Java语言中，通过new创建的对象都会在堆中分配内存。应用程序堆的大小是有限的。系统会根据设备的物理内存大小来确定每个应用程序所允许使用的内存大小，一旦应用程序使用的内存超过这个大小，便会发生OutOfMemoryError。</li>
-</ul>
-<h1 id="长连接"><a href="#长连接" class="headerlink" title="长连接"></a>长连接</h1><ul>
-<li>GCM</li>
-<li>公共的第三方推送</li>
-<li>和服务器轮询或者长连接<br>长连接的话需要检测是否长连接未失效</li>
-</ul>
-<h1 id="Dalvik-vs-ART"><a href="#Dalvik-vs-ART" class="headerlink" title="Dalvik vs ART"></a>Dalvik vs ART</h1><ul>
-<li>Dalvik：APK在打包的时候Java文件会通过javac编译成.class，但是Dalvik只能执行.dex文件，所以Dalvik会先将class文件转化为dex文件。Dalvik虚拟机在启动的时候会先将.dex文件转换成快速运行的机器码，又因为65535这个问题，导致我们在应用冷启动的时候有一个合包的过程，最后导致的一个结果就是我们的app启动慢，这就是Dalvik虚拟机的JIT特性（Just In Time）。</li>
-<li>ART： 该虚拟机Android5.0才出现，ART有一个很好的特性AOT（ahead of time），这个特性就是我们在安装APK的时候就将dex直接处理成可直接供ART虚拟机使用的机器码，ART虚拟机将.dex文件转换成可直接运行的.oat文件，ART虚拟机天生支持多dex，所以也不会有一个合包的过程，所以ART虚拟机会很大的提升APP冷启动速度。<br><strong>总结</strong></li>
-</ul>
-<p>ART优点：</p>
-<ul>
-<li>加快APP冷启动速度</li>
-<li>提升GC速度</li>
-<li><p>提供功能全面的Debug特性<br>ART缺点：</p>
-</li>
-<li><p>APP安装速度慢，因为在APK安装的时候要生成可运行.oat文件</p>
-</li>
-<li>APK占用空间大，因为在APK安装的时候要生成可运行.oat文件</li>
-</ul>
-
-          
+          进程 为了确定保留或终止哪些进程，系统会根据进程中正在运行的组件以及这些组件的状态，将每个进程放入“重要性层次结构”中。 例如，如果某进程托管着服务和可见 Activity，则会将此进程评定为可见进程，而不是服务进程。  
+按照重要程度分为（第一个进程最重要，将是最后一个被终止的进程）1. 前台进程
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/21/进程 线程/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2267,11 +2090,16 @@
       
         
           
-            <h1 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h1><p>红黑树本质上是一颗二叉搜索树，它满足二叉搜索树的基本性质——即树中的任何节点的值大于它的左子节点，且小于它的右子节点。<br><img src="https://upload-images.jianshu.io/upload_images/5713484-169f0fef8703f997.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="二叉搜索树"></p>
-<p>查找速度快，查找48这个数字，只需要查找四个节点。理论上，一颗平衡的二叉树搜索树的任意节点平均查找效率为树的高度n，即O(lgn)。但是如果二叉搜索树的失去平衡(元素在一侧)，搜索效率就退化为O(n)，因此二叉搜索树的平衡是搜索效率的关键所在。为了维护树的平衡性，数据结构内出现了各种各样的树，比如AVL树通过维持任何节点的左右子树的高度差 不大于1保持树的平衡，而红黑树使用颜色维持树的平衡，使二叉搜索树的左右子树的高度差 保持在固定的范围。相比于其他二叉搜索树，红黑树对二叉搜索树的平衡性维持着自身的优势</p>
-<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><p>特性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1、节点是红色或黑色  </div><div class="line">2、根是黑色  </div><div class="line">3、所有叶子是黑色(叶子是NIL节点)  </div><div class="line">4、每个红色节点的两个子节点都是黑色的(从每个叶子到跟的所有路径不能有两个连续的红色节点)  </div><div class="line">5、从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。</div></pre></td></tr></table></figure></p>
-
-          
+          二叉搜索树红黑树本质上是一颗二叉搜索树，它满足二叉搜索树的基本性质——即树中的任何节点的值大于它的左子节点，且小于它的右子节点。
+查找速度快，查找48这个数字，只需要查找四个节点。理论上，一颗平衡的二叉树搜索树的任意节点平均查找效率为树的高度n，即O(lgn)。但是如果二叉搜索树的失去平衡(元素在一
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/18/二叉树/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
