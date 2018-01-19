@@ -111,7 +111,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true},
+    sidebar: {"position":"left","display":"post","offset":24,"offset_float":0,"b2t":false,"scrollpercent":true},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -432,7 +432,7 @@
           <p>作为一名优秀的程序员，如果不能看看外面的世界，简直是阻碍了我们进步的脚步，无意间看到一篇博文讲解自己租用服务器来翻墙，所以决定试一试。<br>对比了搬瓦工与vultr及linode三家VPS服务商，最后决定先用vultr的服务器先试一试，一般来说使用离国内越近的位置，速度也越快，东京和新加坡是比较好的选择，买了西雅图的好像也还不错，1080P没有什么问题<br>下面我们来说一说配置的过程</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/19/翻过墙来看世界/#далее" rel="contents">
+            <a class="btn" href="/2018/01/19/翻过墙来看世界/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -604,7 +604,7 @@
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/16/自定义View/#далее" rel="contents">
+            <a class="btn" href="/2018/01/16/自定义View/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -792,7 +792,7 @@
 <p>调用.subscribe()方法 发现最终都是调用下面的方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@BackpressureSupport</span>(BackpressureKind.SPECIAL)</div><div class="line">  <span class="meta">@SchedulerSupport</span>(SchedulerSupport.NONE)</div><div class="line">  <span class="meta">@Beta</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(FlowableSubscriber&lt;? <span class="keyword">super</span> T&gt; s)</span> </span>&#123;</div><div class="line">      ObjectHelper.requireNonNull(s, <span class="string">"s is null"</span>);</div><div class="line">      <span class="keyword">try</span> &#123;</div><div class="line">          <span class="comment">/**该方法是对observer进行加工，</span></div><div class="line">          之后可以调用RxJavaPlugins的方法对observer的响应进行修改</div><div class="line">         **/</div><div class="line">          Subscriber&lt;? <span class="keyword">super</span> T&gt; z = RxJavaPlugins.onSubscribe(<span class="keyword">this</span>, s);</div><div class="line"></div><div class="line">          ObjectHelper.requireNonNull(z, <span class="string">"Plugin returned null Subscriber"</span>);</div><div class="line">          <span class="comment">/**</span></div><div class="line">          最重要的绑定操作实现在这个方法中，</div><div class="line">          Flowable里是一个抽象方法</div><div class="line">          我们需要到具体的 Flowable的实现类中查看</div><div class="line">         **/</div><div class="line">          subscribeActual(z);</div><div class="line">      &#125; <span class="keyword">catch</span> (NullPointerException e) &#123; <span class="comment">// NOPMD</span></div><div class="line">          <span class="keyword">throw</span> e;</div><div class="line">      &#125; <span class="keyword">catch</span> (Throwable e) &#123;</div><div class="line">          Exceptions.throwIfFatal(e);</div><div class="line">          <span class="comment">// can't call onError because no way to know if a Subscription has been set or not</span></div><div class="line">          <span class="comment">// can't call onSubscribe because the call might have set a Subscription already</span></div><div class="line">          RxJavaPlugins.onError(e);</div><div class="line"></div><div class="line">          NullPointerException npe = <span class="keyword">new</span> NullPointerException(<span class="string">"Actually not, but can't throw other exceptions due to RS"</span>);</div><div class="line">          npe.initCause(e);</div><div class="line">          <span class="keyword">throw</span> npe;</div><div class="line">      &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/RxJava2/#далее" rel="contents">
+            <a class="btn" href="/2018/01/12/RxJava2/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -981,7 +981,7 @@
 <p>2.上界和下界的特点<br>上界的list只能get，不能add（确切地说不能add出除null之外的对象，包括Object）<br>下界的list只能add，不能get<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.ArrayList;  </div><div class="line"><span class="keyword">import</span> java.util.List;  </div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fruit</span> </span>&#123;&#125;  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span> <span class="keyword">extends</span> <span class="title">Fruit</span> </span>&#123;&#125;  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Jonathan</span> <span class="keyword">extends</span> <span class="title">Apple</span> </span>&#123;&#125;  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Orange</span> <span class="keyword">extends</span> <span class="title">Fruit</span> </span>&#123;&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CovariantArrays</span> </span>&#123;  </div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </div><div class="line">    <span class="comment">//上界  </span></div><div class="line">    List&lt;? extends Fruit&gt; flistTop = <span class="keyword">new</span> ArrayList&lt;Apple&gt;();  </div><div class="line">    flistTop.add(<span class="keyword">null</span>);  </div><div class="line">    <span class="comment">//add Fruit对象会报错  </span></div><div class="line">    <span class="comment">//flist.add(new Fruit());  </span></div><div class="line">    Fruit fruit1 = flistTop.get(<span class="number">0</span>);  </div><div class="line">  </div><div class="line">    <span class="comment">//下界  </span></div><div class="line">    List&lt;? <span class="keyword">super</span> Apple&gt; flistBottem = <span class="keyword">new</span> ArrayList&lt;Apple&gt;();  </div><div class="line">    flistBottem.add(<span class="keyword">new</span> Apple());  </div><div class="line">    flistBottem.add(<span class="keyword">new</span> Jonathan());  </div><div class="line">    <span class="comment">//get Apple对象会报错  </span></div><div class="line">    <span class="comment">//Apple apple = flistBottem.get(0);  </span></div><div class="line">  &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/10/泛型/#далее" rel="contents">
+            <a class="btn" href="/2018/01/10/泛型/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1175,7 +1175,7 @@
 <li>看完Java编程思想以及Android开发艺术探索
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/01/新年新Flag/#далее" rel="contents">
+            <a class="btn" href="/2018/01/01/新年新Flag/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1364,7 +1364,7 @@ RefreshH
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/29/SmartRefreshLayout/#далее" rel="contents">
+            <a class="btn" href="/2017/12/29/SmartRefreshLayout/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1552,7 +1552,7 @@ RefreshH
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/22/Android 底层知识/#далее" rel="contents">
+            <a class="btn" href="/2017/12/22/Android 底层知识/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1745,7 +1745,7 @@ RefreshH
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/21/Android 加载机制/#далее" rel="contents">
+            <a class="btn" href="/2017/12/21/Android 加载机制/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1937,7 +1937,7 @@ RefreshH
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/21/进程 线程/#далее" rel="contents">
+            <a class="btn" href="/2017/12/21/进程 线程/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2126,7 +2126,7 @@ RefreshH
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/18/二叉树/#далее" rel="contents">
+            <a class="btn" href="/2017/12/18/二叉树/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2280,13 +2280,6 @@ RefreshH
       
 
       
-        <div class="back-to-top">
-          <i class="fa fa-arrow-up"></i>
-          
-            <span id="scrollpercent"><span>0</span>%</span>
-          
-        </div>
-      
 
     </div>
   </aside>
@@ -2317,6 +2310,13 @@ RefreshH
       </div>
     </footer>
 
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
     
 
   </div>
