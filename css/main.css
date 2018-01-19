@@ -1794,7 +1794,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #95c31b;
+  background: #ff9a87;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2682,4 +2682,17 @@ pre {
 }
 ul {
   list-style-type: circle;
+}
+.post-button {
+  margin-top: 30px;
+  text-align: center;
+}
+.post-button .btn {
+  color: #222;
+  font-size: 15px;
+  background: #fff;
+  border-radius: 16px;
+  line-height: 2;
+  margin: 0 4px 8px 4px;
+  padding: 0 20px;
 }
