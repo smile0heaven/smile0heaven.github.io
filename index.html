@@ -593,14 +593,15 @@
 
       
         
-          
-          自定义view
-123456protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) ```  进行测量   ```Androidint widthMode = MeasureSpec.getMode(widthMeasureSpec);  int widthSize = MeasureSpec.getSize(widthMeasureSpec);
-
-onFinishInflate():从xml加载组件后回调
-
-o
-          ...
+          <h1 id="自定义view"><a href="#自定义view" class="headerlink" title="自定义view"></a>自定义view</h1><ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)</div><div class="line"> ``` </div><div class="line"> 进行测量   </div><div class="line">```Android</div><div class="line">int widthMode = MeasureSpec.getMode(widthMeasureSpec);  </div><div class="line">int widthSize = MeasureSpec.getSize(widthMeasureSpec);</div></pre></td></tr></table></figure>
+</li>
+<li><p>onFinishInflate():从xml加载组件后回调</p>
+</li>
+<li>onSizeChanged():组件大小改变时回调</li>
+<li>onLayout():确定显示的位置</li>
+<li>onTouchEvent():监听到触摸事件时的回调</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/01/16/自定义View/#more" rel="contents">
