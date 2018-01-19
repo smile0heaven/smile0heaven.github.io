@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-20T08:17:51.539Z</updated>
+  <updated>2018-01-19T07:18:01.698Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>翻过墙来看世界</title>
+    <link href="http://yoursite.com/2018/01/19/%E7%BF%BB%E8%BF%87%E5%A2%99%E6%9D%A5%E7%9C%8B%E4%B8%96%E7%95%8C/"/>
+    <id>http://yoursite.com/2018/01/19/翻过墙来看世界/</id>
+    <published>2018-01-18T16:00:00.000Z</published>
+    <updated>2018-01-19T07:18:01.698Z</updated>
+    
+    <content type="html"><![CDATA[<p>作为一名优秀的程序员，如果不能看看外面的世界，简直是阻碍了我们进步的脚步，无意间看到一篇博文讲解自己租用服务器来翻墙，所以决定试一试。<br>对比了搬瓦工与vultr及linode三家VPS服务商，最后决定先用vultr的服务器先试一试，一般来说使用离国内越近的位置，速度也越快，东京和新加坡是比较好的选择，买了西雅图的好像也还不错，1080P没有什么问题</p>
+<h3 id="1-购买服务器"><a href="#1-购买服务器" class="headerlink" title="1. 购买服务器"></a>1. 购买服务器</h3><h3 id="vultr"><a href="#vultr" class="headerlink" title="vultr"></a><a href="https://www.vultr.com/" target="_blank" rel="external">vultr</a></h3><p>首先选择合适自己的服务器购买</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/C4BBDBAD5BAF41D1A073B3D8F30A8287?method=download&amp;shareKey=5132e8264adbd7a43ca3976b9628cd60" alt="显示文本"></p>
+<p>图中框框的那两个需要勾上<br>可以使用支付宝付钱，但是要预交10美元，扣费好像是根据使用的流量大小。</p>
+<h3 id="2-连接服务器"><a href="#2-连接服务器" class="headerlink" title="2. 连接服务器"></a>2. 连接服务器</h3><p>买好服务器后 在服务器列表上会显示服务器的基本信息</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/41A172061BAF4786BBA263DAEDB56A20?method=download&amp;shareKey=3ccde1ec490016e3507e9d9dcf9599d8" alt="显示文本"></p>
+<p>一般好像不直接在服务器里直接写命令 ，而是借助了一些三方<br>下载putty：<a href="http://pan.baidu.com/s/1jI0T5Fw" target="_blank" rel="external">http://pan.baidu.com/s/1jI0T5Fw</a> 或者直接在百度搜putty下载解压运行putty.exe</p>
+<p>点进服务器详情就可以服务器的IP以及账号密码，运行putty.exe后，我们输入这些信息之后会<br><img src="https://note.youdao.com/yws/api/personal/file/B1BB73F6FE304C1AA7B753D176574FB3?method=download&amp;shareKey=c04a603ebf1a263c8ca218f09be7fb3f" alt="显示文本"><br>显示这个 ，就相当于我们以及成功连接服务器</p>
+<h3 id="3-安装shadowsocks"><a href="#3-安装shadowsocks" class="headerlink" title="3. 安装shadowsocks"></a>3. 安装shadowsocks</h3><p>输入这三行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate  https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x shadowsocks.sh</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</div></pre></td></tr></table></figure>
+<p>期间，可能提示我们输入密码和端口号，不输入就是默认<br>加密方式我们选择aes-256-cfb，这个没有要求<br>都选择完后，会等待几分钟进行安装，安装之后，终端上会显示你之前设置的信息<br><img src="https://note.youdao.com/yws/api/personal/file/AF1E7166E41D4F9D91DF3BF279FB0697?method=download&amp;shareKey=96eb01a8e1d367656f7f9e18a71f5929" alt="显示文本"><br>我们保存下来这些信息，用于后续连接shadowsocks</p>
+<h3 id="4-连接翻墙啦！！！"><a href="#4-连接翻墙啦！！！" class="headerlink" title="4.连接翻墙啦！！！"></a>4.连接翻墙啦！！！</h3><p>windows下载地址 <a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="external">https://github.com/shadowsocks/shadowsocks-windows/releases</a>  </p>
+<p>客户端教程 <a href="https://www.i5seo.com/windows-mac-ios-android-settings-using-the-ss-ssr-tutorial-client-download/" target="_blank" rel="external">https://www.i5seo.com/windows-mac-ios-android-settings-using-the-ss-ssr-tutorial-client-download/</a><br>下载软件后 输入设置的信息就可以翻墙了</p>
+<p>代理模式我们要选择PAC，该模式可以当你浏览特定网站的时候才需要进行翻墙<br><img src="https://note.youdao.com/yws/api/personal/file/B4BF90BC4AA74725849440B8F3A353D6?method=download&amp;shareKey=f3f15525c329a72ac14d23228758ba31" alt="显示文本"></p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>如果我们需要<strong>多用户多端口进行连接</strong> 也可以进行相应的配置<br>在刚刚的终端上输入 进入到服务器的这个文件<br>vi /etc/shadowsocks.json<br><img src="https://note.youdao.com/yws/api/personal/file/9ADE75185C5A407997616336BBC1CADB?method=download&amp;shareKey=a53ed155007d8cba412fc4436b81dd69" alt="显示文本"><br>我们可以看看刚刚配置的单用户的信息，我们现在要对里面的数据进行修改<br>（<strong>注意！！！如果进来没有看到这个信息，那证明用户信息不在这个文件中</strong>）  现输入i 进入编辑模式<br>把信息修改成下图，port_password中是配置的端口和用户密码<br><img src="https://note.youdao.com/yws/api/personal/file/CF9D33575CE74038B153CA904042872D?method=download&amp;shareKey=dfd084891d56ec08685c3b94cecc1a2e" alt="显示文本"><br>编辑完后 输入esc退出编辑，然后输入shift+Q进行保存，最后输入wq<br>我们修改好后，需要对shadowssock进行重启  </p>
+<p>关闭ShadowSocks服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssserver -c /etc/shadowsocks.json -d stop</div></pre></td></tr></table></figure></p>
+<p>启动ShadowSocks服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssserver -c /etc/shadowsocks.json -d start</div></pre></td></tr></table></figure></p>
+<p>由此，我们就可以进行多个用户连接了。</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a><strong>注意</strong></h3><p>由于选择了centerOS6的操作系统 有个巨坑的地方在于我们<strong>需要手动允许设置的端口号通过防火墙</strong><br>输入以下代码，进入防火墙配置信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/sysconfig/iptables</div></pre></td></tr></table></figure></p>
+<p>添加信息到默认的22端口这条规则的下面，按照22端口的规则写就可以<br><img src="https://note.youdao.com/yws/api/personal/file/8C66EB07C57442198B5FC15C4C2A9F7A?method=download&amp;shareKey=a122ed999f698f11dded7c67e7df3171" alt="显示文本"><br>最后重启防火墙使配置生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/iptables restart</div></pre></td></tr></table></figure></p>
+<p>多用户就可以用了！！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;作为一名优秀的程序员，如果不能看看外面的世界，简直是阻碍了我们进步的脚步，无意间看到一篇博文讲解自己租用服务器来翻墙，所以决定试一试。&lt;br&gt;对比了搬瓦工与vultr及linode三家VPS服务商，最后决定先用vultr的服务器先试一试，一般来说使用离国内越近的位置，速度也
+    
+    </summary>
+    
+      <category term="VPN" scheme="http://yoursite.com/categories/VPN/"/>
+    
+    
+      <category term="VPN" scheme="http://yoursite.com/tags/VPN/"/>
+    
+  </entry>
   
   <entry>
     <title>自定义View</title>
