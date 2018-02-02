@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -94,22 +94,17 @@
 
 
 
-<meta name="description" content="Binder1) 首先，Binder分为Client和Server两个进程。2) 图中的IPC就是进程间通信的意思。图中的ServiceManager，负责把Binder Server注册到一个容器中。ServiceManager比喻成电话局，存储着每个住宅的座机电话，还是很恰当的。张三给李四打电话，拨打电话号码，会先转接到电话局，电话局的接线员查到这个电话号码的地址，因为李四的电话号码之前在电话">
-<meta name="keywords" content="Android">
+<meta name="description" content="Lambda 表达式的结构 一个 Lambda 表达式可以有零个或多个参数 参数的类型既可以明确声明，也可以根据上下文来推断。例如：(int a)与(a)效果相同 所有参数需包含在圆括号内，参数之间用逗号相隔。例如：(a, b) 或 (int a, int b) 或 (String a, int b, float c) 空圆括号代表参数集为空。例如：() -&amp;gt; 42 当只有一个参数，且其类型">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android底层知识">
-<meta property="og:url" content="http://yoursite.com/2017/12/22/Android 底层知识/index.html">
+<meta property="og:title" content="Lambda">
+<meta property="og:url" content="http://yoursite.com/2018/01/23/Lambda/index.html">
 <meta property="og:site_name" content="Smile&#39;Blog">
-<meta property="og:description" content="Binder1) 首先，Binder分为Client和Server两个进程。2) 图中的IPC就是进程间通信的意思。图中的ServiceManager，负责把Binder Server注册到一个容器中。ServiceManager比喻成电话局，存储着每个住宅的座机电话，还是很恰当的。张三给李四打电话，拨打电话号码，会先转接到电话局，电话局的接线员查到这个电话号码的地址，因为李四的电话号码之前在电话">
-<meta property="og:image" content="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223325025-1448613892.png">
-<meta property="og:image" content="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223354650-984999229.png">
-<meta property="og:image" content="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223432791-1010721944.png">
-<meta property="og:image" content="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223504650-228437964.png">
-<meta property="og:updated_time" content="2018-01-16T08:03:20.495Z">
+<meta property="og:description" content="Lambda 表达式的结构 一个 Lambda 表达式可以有零个或多个参数 参数的类型既可以明确声明，也可以根据上下文来推断。例如：(int a)与(a)效果相同 所有参数需包含在圆括号内，参数之间用逗号相隔。例如：(a, b) 或 (int a, int b) 或 (String a, int b, float c) 空圆括号代表参数集为空。例如：() -&amp;gt; 42 当只有一个参数，且其类型">
+<meta property="og:updated_time" content="2018-02-02T09:52:43.089Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android底层知识">
-<meta name="twitter:description" content="Binder1) 首先，Binder分为Client和Server两个进程。2) 图中的IPC就是进程间通信的意思。图中的ServiceManager，负责把Binder Server注册到一个容器中。ServiceManager比喻成电话局，存储着每个住宅的座机电话，还是很恰当的。张三给李四打电话，拨打电话号码，会先转接到电话局，电话局的接线员查到这个电话号码的地址，因为李四的电话号码之前在电话">
-<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223325025-1448613892.png">
+<meta name="twitter:title" content="Lambda">
+<meta name="twitter:description" content="Lambda 表达式的结构 一个 Lambda 表达式可以有零个或多个参数 参数的类型既可以明确声明，也可以根据上下文来推断。例如：(int a)与(a)效果相同 所有参数需包含在圆括号内，参数之间用逗号相隔。例如：(a, b) 或 (int a, int b) 或 (String a, int b, float c) 空圆括号代表参数集为空。例如：() -&amp;gt; 42 当只有一个参数，且其类型">
 
 
 
@@ -137,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/22/Android 底层知识/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/23/Lambda/"/>
 
 
 
 
 
-  <title>Android底层知识 | Smile'Blog</title>
+  <title>Lambda | Smile'Blog</title>
   
 
 
@@ -301,7 +296,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/22/Android 底层知识/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/23/Lambda/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yq">
@@ -318,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android底层知识</h1>
+          <h1 class="post-title" itemprop="name headline">Lambda</h1>
         
 
         <div class="post-meta">
@@ -330,8 +325,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T00:00:00+08:00">
-                2017-12-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-23T00:00:00+08:00">
+                2018-01-23
               </time>
             
 
@@ -353,8 +348,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
 
@@ -370,7 +365,7 @@
 
           
           
-             <span id="/2017/12/22/Android 底层知识/" class="leancloud_visitors" data-flag-title="Android底层知识">
+             <span id="/2018/01/23/Lambda/" class="leancloud_visitors" data-flag-title="Lambda">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -397,7 +392,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  801
+                  797
                 </span>
               
 
@@ -431,25 +426,25 @@
       
 
       
-        <h1 id="Binder"><a href="#Binder" class="headerlink" title="Binder"></a>Binder</h1><p>1) 首先，Binder分为Client和Server两个进程。<br>2) 图中的IPC就是进程间通信的意思。<br>图中的ServiceManager，负责把Binder Server注册到一个容器中。<br>ServiceManager比喻成电话局，存储着每个住宅的座机电话，还是很恰当的。张三给李四打电话，拨打电话号码，会先转接到电话局，电话局的接线员查到这个电话号码的地址，因为李四的电话号码之前在电话局注册过，所以就能拨通；没注册，就会提示该号码不存在。<br>对照着Android Binder机制，对着上面这图，张三就是Binder Client，李四就是Binder Server，电话局就是ServiceManager，电话局的接线员在这个过程中做了很多事情，对应着图中的Binder驱动</p>
-<p><img src="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223325025-1448613892.png" alt=""></p>
-<p> 3) Client想要直接调用Server的add方法，是不可以的，因为它们在不同的进程中，这时候就需要Binder来帮忙了。<br>首先是Server在SM这个容器中注册。其次，Client想要调用Server的add方法，就需要先获取Server对象， 但是SM不会把真正的Server对象返回给Client，而是把Server的一个代理对象返回给Client，也就是Proxy。然后，Client调用Proxy的add方法，SM会帮他去调用Server的add方法，并把结果返回给Client。<br> <img src="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223354650-984999229.png" alt=""></p>
-<h1 id="AIDL"><a href="#AIDL" class="headerlink" title="AIDL"></a>AIDL</h1><p> Android系统中很多系统服务都是aidl，比如说剪切板<br> AIDL中需要知道下面几个类：</p>
-<ul>
-<li>IBinder</li>
-<li>IInterface</li>
-<li>Binder</li>
-<li>Proxy</li>
-<li>Stub </li>
-</ul>
-<p>当我们自定义一个aidl文件时（比如MyAidl.aidl，里面有一个sum方法），Android Studio会帮我们生成一个类文件MyAidl.java，如下图所示：<br> <img src="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223432791-1010721944.png" alt=""></p>
-<p>MyAidl.java这个生成文件中，包括MyAidl接口，以及Stub和Proxy两个实现了MyAidl接口的类，其中Stub是定义在MyAidl接口中的，而Proxy则定义在Stub类中。为什么要嵌套那么多层级，因为有多个AIDL类的时候，Stub和Proxy类就会重名，把它们放在各自的AIDL接口中，就必须MyAidl.Stub这样去使用，就区分开了。<br> <img src="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223504650-228437964.png" alt=""><br> 1) 从Client看起，对于AIDL的使用者，我们这么写程序：MyAidl.Stub.asInterface(某IBinder对象).sum(1, 2);         //最好在执行sum方法前判空。<br>asInterface方法的作用是判断参数——也就是IBinder对象，和自己是否在同一个进程：</p>
-<ul>
-<li>是，则直接转换、直接使用，接下来就跟Binder跨进程通信无关啦；</li>
-<li><p>否，则把这个IBinder参数包装成一个Proxy对象，这时调用Stub的sum方法，间接调用Proxy的sum方法。return new MyAidl.Stub.Proxy(obj);<br>2) Proxy在自己的sum方法中，会使用Parcelable来准备数据，把函数名称、函数参数都写入_data，让_reply接收函数返回值。最后使用IBinder的transact方法，把数据就传给Binder的Server端了。mRemote.transact(Stub.TRANSACTION_addBook, _data, _reply, 0); //这里的mRemote就是asInterface方法传过来的obj参数</p>
-<p>3) Server则是通过onTransact方法接收Client进程传过来的数据，包括函数名称、函数参数，找到对应的函数，这里是sum，把参数喂进去，得到结果，返回。<br>所以onTransact函数经历了读数据–&gt;执行要调用的函数–&gt;把执行结果再写数据的过程</p>
+        <h2 id="Lambda-表达式的结构"><a href="#Lambda-表达式的结构" class="headerlink" title="Lambda 表达式的结构"></a>Lambda 表达式的结构</h2><ul>
+<li>一个 Lambda 表达式可以有零个或多个参数</li>
+<li>参数的类型既可以明确声明，也可以根据上下文来推断。例如：(int a)与(a)效果相同</li>
+<li>所有参数需包含在圆括号内，参数之间用逗号相隔。例如：(a, b) 或 (int a, int b) 或 (String a, int b, float c)</li>
+<li>空圆括号代表参数集为空。例如：() -&gt; 42</li>
+<li>当只有一个参数，且其类型可推导时，圆括号（）可省略。例如：a -&gt; return a*a</li>
+<li>Lambda 表达式的主体可包含零条或多条语句</li>
+<li>如果 Lambda 表达式的主体只有一条语句，花括号{}可省略。匿名函数的返回类型与该主体表达式一致</li>
+<li>如果 Lambda 表达式的主体包含一条以上语句，则表达式必须包含在花括号{}中（形成代码块）。匿名函数的返回类型与代码块的返回类型一致，若没有返回则为空  <a id="more"></a>
+<h2 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h2>只包含一个抽象方法的接口、<br>例如Runnable<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public interface Runnable &#123;</div><div class="line">  </div><div class="line">    public abstract void run();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<p>类似于这种方法，我们可以使用匿名内部类来实例化对象，在Java8中lambda也同同样可以实现，在Java中一切皆对象，对于我们而言 ，函数是用来辅助于对象的，而JavaScript等函数式编程语言中，函数是可以独立存在的，函数式语言提供了一种强大的功能——闭包，相比于传统的编程方法有很多优势，闭包是一个可调用的对象，它记录了一些信息，这些信息来自于创建它的作用域。Java 现在提供的最接近闭包的概念便是 Lambda 表达式，虽然闭包与 Lambda 表达式之间存在显著差别，但至少 Lambda 表达式是闭包很好的替代者。  </p>
+<p>使用lambda我们可以实现为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Runnable r =()-&gt;&#123;&#125;；</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//旧方法:</div><div class="line">new Thread(new Runnable() &#123;</div><div class="line">@Override</div><div class="line">public void run() &#123;</div><div class="line">    System.out.println(&quot;Hello from thread&quot;);</div><div class="line">&#125;</div><div class="line">&#125;).start();</div><div class="line"></div><div class="line">//新方法:</div><div class="line">new Thread(</div><div class="line">() -&gt; System.out.println(&quot;Hello from thread&quot;)</div><div class="line">).start();</div></pre></td></tr></table></figure>
+<p>编译器会自动推断：根据线程类的构造函数签名 public Thread(Runnable r) { }，将该 Lambda 表达式赋给 Runnable 接口。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//Old way:</div><div class="line">List&lt;Integer&gt; list = Arrays.asList(1, 2, 3, 4, 5, 6, 7);</div><div class="line">for(Integer n: list) &#123;</div><div class="line">   System.out.println(n);</div><div class="line">&#125;</div><div class="line"></div><div class="line">//New way:</div><div class="line">List&lt;Integer&gt; list = Arrays.asList(1, 2, 3, 4, 5, 6, 7);</div><div class="line">list.forEach(n -&gt; System.out.println(n));</div><div class="line"></div><div class="line"></div><div class="line">//or we can use :: double colon operator in Java 8</div><div class="line">list.forEach(System.out::println);</div></pre></td></tr></table></figure></p>
+<p>::双冒号后面的方法的参数就是lambda表达式传入的参数，使用方法引用，要保证方法中调用的是存在的方法</p>
+<h2 id="Lambda表达式-vs-匿名类"><a href="#Lambda表达式-vs-匿名类" class="headerlink" title="Lambda表达式 vs 匿名类"></a>Lambda表达式 vs 匿名类</h2><p>lambda表达式和匿名内部类，一个关键的不同点就是关键字 this。匿名类的 this 关键字指向匿名类，而lambda表达式的 this 关键字指向包围lambda表达式的类。另一个不同点是二者的编译方式。Java编译器将lambda表达式编译成类的私有方法。使用了Java 7的 invokedynamic 字节码指令来动态绑定这个方法。</p>
+<h2 id="在kotlin中使用lambda"><a href="#在kotlin中使用lambda" class="headerlink" title="在kotlin中使用lambda"></a>在kotlin中使用lambda</h2><p>在kotlin中使用是 需要对函数加一个大括号</p>
 
       
     </div>
@@ -490,7 +485,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
           
         </div>
       
@@ -503,8 +498,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/21/Android 加载机制/" rel="next" title="Android 加载机制">
-                <i class="fa fa-chevron-left"></i> Android 加载机制
+              <a href="/2018/01/19/翻过墙来看世界/" rel="next" title="翻过墙来看世界">
+                <i class="fa fa-chevron-left"></i> 翻过墙来看世界
               </a>
             
           </div>
@@ -513,8 +508,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/29/SmartRefreshLayout/" rel="prev" title="SmartRefreshLayout源码解析">
-                SmartRefreshLayout源码解析 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/23/Kotlin/" rel="prev" title="Kotlin">
+                Kotlin <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -660,7 +655,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Binder"><span class="nav-number">1.</span> <span class="nav-text">Binder</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AIDL"><span class="nav-number">2.</span> <span class="nav-text">AIDL</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lambda-表达式的结构"><span class="nav-number">1.</span> <span class="nav-text">Lambda 表达式的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数式接口"><span class="nav-number">2.</span> <span class="nav-text">函数式接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lambda表达式-vs-匿名类"><span class="nav-number">3.</span> <span class="nav-text">Lambda表达式 vs 匿名类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在kotlin中使用lambda"><span class="nav-number">4.</span> <span class="nav-text">在kotlin中使用lambda</span></a></li></ol></div>
             
 
           </div>

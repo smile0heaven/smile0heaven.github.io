@@ -1,0 +1,1024 @@
+<!doctype html>
+<link href="http://7u2ss1.com1.z0.glb.clouddn.com/harlem-shake-style.css" rel="stylesheet" type="text/css" />
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="原因主要由于内存未能及时释放回收造成， 而内存什么时候需要被回收 ，我们就需要先了解一下回收机制,了解这些之前 我们需要补充一些基础的知识 内存分配 寄存器：我们在程序中无法控制,又叫程序计数器。JVM支持多个线程同时运行，当每一个新线程被创建时，它都将得到它自己的PC寄存器（程序计数器）。如果线程正在执行的是一个Java方法（非native），那么PC寄存器的值将总是指向下一条将被执行的指令，如">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内存泄漏">
+<meta property="og:url" content="http://yoursite.com/2018/01/30/内存泄漏/index.html">
+<meta property="og:site_name" content="Smile&#39;Blog">
+<meta property="og:description" content="原因主要由于内存未能及时释放回收造成， 而内存什么时候需要被回收 ，我们就需要先了解一下回收机制,了解这些之前 我们需要补充一些基础的知识 内存分配 寄存器：我们在程序中无法控制,又叫程序计数器。JVM支持多个线程同时运行，当每一个新线程被创建时，它都将得到它自己的PC寄存器（程序计数器）。如果线程正在执行的是一个Java方法（非native），那么PC寄存器的值将总是指向下一条将被执行的指令，如">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/C7686C66AA7741DB9C1F9EB81E4BB70A?method=download&shareKey=0908dc67c50fcd65b9488ffcdd87e1ae">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/E1D88392AA994A5FBFE7349EA6EEA7AB?method=download&shareKey=397b3222906159137130a77ed5ad67e1">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/8A99B51B41E04A308F6084CD989D5AA7?method=download&shareKey=7150d5c4201d0f491a004248c733228e">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/5EC2D27D9E894DAFBA2A7544B28AF11A?method=download&shareKey=f5fb13ce87e3fcf79cf0c5edc99728ad">
+<meta property="og:updated_time" content="2018-02-02T09:52:10.600Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="内存泄漏">
+<meta name="twitter:description" content="原因主要由于内存未能及时释放回收造成， 而内存什么时候需要被回收 ，我们就需要先了解一下回收机制,了解这些之前 我们需要补充一些基础的知识 内存分配 寄存器：我们在程序中无法控制,又叫程序计数器。JVM支持多个线程同时运行，当每一个新线程被创建时，它都将得到它自己的PC寄存器（程序计数器）。如果线程正在执行的是一个Java方法（非native），那么PC寄存器的值将总是指向下一条将被执行的指令，如">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/C7686C66AA7741DB9C1F9EB81E4BB70A?method=download&shareKey=0908dc67c50fcd65b9488ffcdd87e1ae">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/30/内存泄漏/"/>
+
+
+
+
+
+  <title>内存泄漏 | Smile'Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b652010e74075b0b835d3b2ba6a1d824";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Smile'Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/30/内存泄漏/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yq">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Smile'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">内存泄漏</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-30T00:00:00+08:00">
+                2018-01-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/30/内存泄漏/" class="leancloud_visitors" data-flag-title="内存泄漏">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  3,935
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  15
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>主要由于内存未能及时释放回收造成，</p>
+<p>而内存什么时候需要被回收 ，我们就需要先了解一下回收机制,了解这些之前 我们需要补充一些基础的知识</p>
+<h2 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h2><ol>
+<li>寄存器：我们在程序中无法控制,又叫程序计数器。JVM支持多个线程同时运行，当每一个新线程被创建时，它都将得到它自己的PC寄存器（程序计数器）。如果线程正在执行的是一个Java方法（非native），那么PC寄存器的值将总是指向下一条将被执行的指令，如果方法是 native的，程序计数器寄存器的值不会被定义。 JVM的程序计数器寄存器的宽度足够保证可以持有一个返回地址或者native的指针。</li>
+<li>栈：存放基础数据类型以及对象的引用，每个线程拥有一个栈</li>
+<li>堆：存放对象，使用new产生的数据</li>
+<li>方法区：当虚拟机装载一个class文件时，它会从这个class文件包含的二进制数据中解析类型信息，然后把这些类型信息（包括类信息、常量、静态变量等）放到方法区中，该内存区域被所有线程共享</li>
+</ol>
+<ul>
+<li>静态域：使用static定义的静态成员</li>
+<li>常量池：存放常量</li>
+<li>类信息：包括类以及方法和域名的信息</li>
+</ul>
+<ol>
+<li>非RAM(随机存取存储器)存储：硬盘等永久存储空间  </li>
+</ol>
+<a id="more"></a>
+<h3 id="对象以及对象引用（栈和堆）"><a href="#对象以及对象引用（栈和堆）" class="headerlink" title="对象以及对象引用（栈和堆）"></a>对象以及对象引用（栈和堆）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class Demo&#123;</div><div class="line">    public Demo()&#123;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public void main(String[] args)&#123;</div><div class="line">    Demo demo=new Demo();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>左边的 Demo demo代表创建一个Demo类引用变量 ，存储在栈空间中</li>
+<li>new Demo()代表我们在堆空间中创建了一个demo对象  </li>
+<li>=操作符使对象引用指向Demo对象</li>
+</ol>
+<p><img src="https://note.youdao.com/yws/api/personal/file/C7686C66AA7741DB9C1F9EB81E4BB70A?method=download&amp;shareKey=0908dc67c50fcd65b9488ffcdd87e1ae" alt="image"></p>
+<p>引用变量在程序运行到其作用域之外后被释放。而数组和对象本身在堆中分配，即使程序运行到使用 new 产生数组或者对象的语句所在的代码块之外，数组和对象本身占据的内存不会被释放，数组和对象在没有引用变量指向它的时候，才变为垃圾，不能被使用，但仍 然占据内存空间不放，在随后的一个不确定的时间被垃圾回收器收走（释放掉）。这也是 Java 比较占内存的原因。<br>Java的堆优势是可以动态地分配内存大小，生存期也不必事先告诉编译器，因为它是在运行时动态分配内存的，Java的垃圾收集器会自动收走这些不再使用的数据。但缺点是，由于要在运行时动态 分配内存，存取速度较慢。<br>栈的优势是，存取速度比堆要快，仅次于寄存器，栈数据可以共享。但缺点是，存在栈中的数据大小与生存期必须是确定的，缺乏灵活性。栈中主要存放一些基本类型的变量数据（int, short, long, byte, float, double, boolean, char）和对象句柄(引用)。</p>
+<p>　　</p>
+<h3 id="常量池"><a href="#常量池" class="headerlink" title="常量池"></a>常量池</h3><p>常量池指的是在编译期被确定，并被保存在已编译的.class文件中的一些数据。除了包含代码中所定义的各种基本类型（如int、long等等）和对象型（如String及数组）的常量值(final)还包含一些以文本形式出现的符号引用，比如： </p>
+<ol>
+<li>类和接口的全限定名</li>
+<li>字段的名称和描述符</li>
+<li>方法的名称和描述符<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4>　　对于字符串，其对象的引用都是存储在栈中的，如果是编译期已经创建好(直接用双引号定义的)的就存储在常量池中，如果是运行期（new出来的）才能确定的就存储在堆中。对于equals相等的字符串，在常量池中永远只有一份，在堆中有多份，基本类型的包装类和字符串相似，除了两种浮点数类型的包装类没有实现（但他们维护的常量仅仅是【-128至127】这个范围内的常量，如果常量值超过这个范围，就会从堆中创建对象，不再从常量池中取。）<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">String s1 = &quot;china&quot;;</div><div class="line">String s2 = &quot;china&quot;;</div><div class="line">String s3 = &quot;china&quot;;</div><div class="line"></div><div class="line">String ss1 = new String(&quot;china&quot;);</div><div class="line">String ss2 = new String(&quot;china&quot;);</div><div class="line">String ss3 = new String(&quot;china&quot;);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="https://note.youdao.com/yws/api/personal/file/E1D88392AA994A5FBFE7349EA6EEA7AB?method=download&amp;shareKey=397b3222906159137130a77ed5ad67e1" alt="image"></p>
+<p>对于通过new产生一个字符串（假设为“china”）时，会先去常量池中查找是否已经有了“china”对象，如果没有则在常量池中创建一个此字符串对象，然后堆中再创建一个常量池中此”china”对象的拷贝对象。</p>
+<h4 id="基础类型的变量和常量"><a href="#基础类型的变量和常量" class="headerlink" title="基础类型的变量和常量"></a>基础类型的变量和常量</h4><p>对于基础类型的变量和常量，变量和引用存储在栈中，常量存储在常量池中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">int i1 = 9;</div><div class="line">      int i2 = 9;</div><div class="line">      int i3 = 9;</div><div class="line"></div><div class="line">      final int INT1 = 9;</div><div class="line">      final int INT2 = 9;</div><div class="line">      final int INT3 = 9;</div></pre></td></tr></table></figure></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/8A99B51B41E04A308F6084CD989D5AA7?method=download&amp;shareKey=7150d5c4201d0f491a004248c733228e" alt="image"></p>
+<p>　编译器先处理int i1 = 9；首先它会在栈中创建一个变量为i1的引用，然后查找栈中是否有9这个值，如果没找到，就将9存放进来，然后将i1指向9。接着处理int i2 = 9；在创建完i2的引用变量后，因为在栈中已经有9这个值，便将i2直接指向9。这样，就出现了i1与i2同时均指向9的情况。最后i3也指向这个9。  
+　
+　</p>
+<h4 id="成员变量和局部变量"><a href="#成员变量和局部变量" class="headerlink" title="成员变量和局部变量"></a>成员变量和局部变量</h4><p>对于成员变量和局部变量：成员变量就是方法外部，类的内部定义的变量；局部变量就是方法或语句块内部定义的变量。局部变量必须初始化。 形式参数是局部变量，局部变量的数据存在于栈内存中。栈内存中的局部变量随着方法的消失而消失。 成员变量存储在堆中的对象里面，由垃圾回收器负责回收。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">　　class BirthDate &#123;</div><div class="line">    private int day;</div><div class="line">    private int month;</div><div class="line">    private int year;</div><div class="line">    public BirthDate(int d, int m, int y) &#123;</div><div class="line">        day = d;</div><div class="line">        month = m;</div><div class="line">        year = y;</div><div class="line">    &#125;</div><div class="line">    // 省略get,set方法………</div><div class="line">    &#125;</div><div class="line">public class Test &#123;</div><div class="line">    public static void main(String args[]) &#123;</div><div class="line">        int date = 9;</div><div class="line">        Test test = new Test();</div><div class="line">        test.change(date);</div><div class="line">        BirthDate d1 = new BirthDate(7, 7, 1970);</div><div class="line">    &#125;</div><div class="line">    public void change(int i) &#123;</div><div class="line">        i = 1234;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/5EC2D27D9E894DAFBA2A7544B28AF11A?method=download&amp;shareKey=f5fb13ce87e3fcf79cf0c5edc99728ad" alt="image"></p>
+<h2 id="对象引用"><a href="#对象引用" class="headerlink" title="对象引用"></a>对象引用</h2><ol>
+<li><p>强引用（Strong Reference）：如“Object obj = new Object（）”，这类引用是Java程序中最普遍的。只要强引用还存在，垃圾收集器就永远不会回收掉被引用的对象。</p>
+</li>
+<li><p>软引用（Soft Reference）：它用来描述一些可能还有用，但并非必须的对象。在系统内存不够用时，这类引用关联的对象将被垃圾收集器回收。SoftReference类来实现软引用。</p>
+</li>
+<li><p>弱引用（Weak Reference）：它也是用来描述非须对象的，但它的强度比软引用更弱些，被弱引用关联的对象只能生存到下一次垃圾收集发生之前。当垃圾收集器工作时，无论当前内存是否足够，都会回收掉只被弱引用关联的对象。WeakReference类来实现弱引用。</p>
+</li>
+<li><p>虚引用（Phantom Reference）：最弱的一种引用关系，完全不会对其生存时间构成影响，也无法通过虚引用来取得一个对象实例。为一个对象设置虚引用关联的唯一目的是希望能在这个对象被收集器回收时收到一个系统通知。PhantomReference类来实现虚引用。</p>
+</li>
+</ol>
+<h2 id="判断对象是否需要被回收"><a href="#判断对象是否需要被回收" class="headerlink" title="判断对象是否需要被回收"></a>判断对象是否需要被回收</h2><p>采用根搜索算法<br>首先我们需要了解GC root的概念</p>
+<h3 id="GC-root"><a href="#GC-root" class="headerlink" title="GC root"></a>GC root</h3><ol>
+<li>虚拟机栈中引用的对象（栈帧中的本地变量表）<br>我们知道，每个方法执行的时候，jvm都会创建一个相应的栈帧(栈帧中包括操作数栈、局部变量表、运行时常量池的引用)，栈帧中包含这在方法内部使用的所有对象的引用(当然还有其他的基本类型数据)，当方法执行完后，该栈帧会从虚拟机栈中弹出，这样一来，临时创建的对象的引用也就不存在了，或者说没有任何gc roots指向这些临时对象，这些对象在下一次GC时便会被回收掉</li>
+<li>方法区中的常量引用的对象；</li>
+<li>方法区中的类静态属性引用的对象；</li>
+<li>本地方法栈中JNI（Native方法）的引用对象。<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3></li>
+<li>通过“GC Roots”的对象作为起始点，寻找对应的引用节点。</li>
+<li>找到这些引用节点后，从这些节点开始向下继续寻找它们的引用节点。</li>
+<li>重复（2）。</li>
+<li><p>搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链相连时，就证明此对象是不可用的。</p>
+<h3 id="关于标记阶段有几个关键点是值得注意的："><a href="#关于标记阶段有几个关键点是值得注意的：" class="headerlink" title="关于标记阶段有几个关键点是值得注意的："></a>关于标记阶段有几个关键点是值得注意的：</h3></li>
+<li><p>开始进行标记前，需要先暂停应用线程，否则如果对象图一直在变化的话是无法真正去遍历它的</p>
+</li>
+<li>暂停时间的长短并不取决于堆内对象的多少也不是堆的大小，而是存活对象的多少。因此，调高堆的大小并不会影响到标记阶段的时间长短。</li>
+<li>在根搜索算法中，要真正宣告一个对象死亡，至少要经历两次标记过程：  <ul>
+<li>如果对象在进行根搜索后发现没有与GC Roots相连接的引用链，那它会被第一次标记并且进行一次筛选。筛选的条件是此对象是否有必要执行   finalize（）方法（可看作析构函数，类似于OC中的dealloc，Swift中的deinit）。当对象没有覆盖finalize（）方法，或finalize（）方法已经被虚拟机调用过，虚拟机将这两种情况都视为没有必要执行。  </li>
+<li>如果该对象被判定为有必要执行finalize（）方法，那么这个对象将会被放置在一个名为F-Queue队列中，并在稍后由一条由虚拟机自动建立的、低优先级的Finalizer线程去执行finalize（）方法。finalize（）方法是对象逃脱死亡命运的最后一次机会（因为一个对象的finalize（）方法最多只会被系统自动调用一次），稍后GC将对F-Queue中的对象进行第二次小规模的标记，如果要在finalize（）方法中成功拯救自己，只要在finalize（）方法中让该对象重新引用链上的任何一个对象建立关联即可。而如果对象这时还没有关联到任何链上的引用，那它就会被回收掉。</li>
+</ul>
+</li>
+</ol>
+<h2 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h2><p>原因：持有对象的强引用，且没有及时释放，进而造成内存单元一直被占用，浪费空间，甚至可能造成内存溢出！</p>
+<h3 id="Android中的内存泄漏"><a href="#Android中的内存泄漏" class="headerlink" title="Android中的内存泄漏"></a>Android中的内存泄漏</h3><ul>
+<li>全局进程(process-global)的static变量。这个无视应用的状态，持有Activity的强引用的怪物。</li>
+<li>活在Activity生命周期之外的线程。没有清空对Activity的强引用。<h4 id="Static-Activities"><a href="#Static-Activities" class="headerlink" title="Static Activities"></a>Static Activities</h4>在类中定义了静态Activity变量，把当前运行的Activity实例赋值于这个静态变量。<br>如果这个静态变量在Activity生命周期结束后没有清空，就导致内存泄漏。因为static变量是贯穿这个应用的生命周期的，所以被泄漏的Activity就会一直存在于应用的进程中，不会被垃圾回收器回收。<h4 id="单例模式引起的内存泄漏"><a href="#单例模式引起的内存泄漏" class="headerlink" title="单例模式引起的内存泄漏"></a>单例模式引起的内存泄漏</h4>由于单例的一般为static类，生命周期和整个应用的生命周期一致，如果该单例中持有页面中的数据，会导致该页面无法被回收<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppManager</span> </span>&#123;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> AppManager instance;  </div><div class="line">    <span class="keyword">private</span> Context context;  </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">AppManager</span><span class="params">(Context context)</span> </span>&#123;  </div><div class="line">        <span class="keyword">this</span>.context = context;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> AppManager <span class="title">getInstance</span><span class="params">(Context context)</span> </span>&#123;  </div><div class="line">        <span class="keyword">if</span> (instance != <span class="keyword">null</span>) &#123;  </div><div class="line">            instance = <span class="keyword">new</span> AppManager(context);  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> instance;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这是一个普通的单例模式，当创建这个单例的时候，由于需要传入一个Context，所以这个Context的生命周期的长短至关重要：</p>
+<p>1、传入的是Application的Context：这将没有任何问题，因为单例的生命周期和Application的一样长 ;</p>
+<p>2、传入的是Activity的Context：当这个Context所对应的Activity退出时，由于该Context和Activity的生命周期一样长(Activity间接继承于Context)，所以当前Activity退出时它的内存并不会被回收，因为单例对象持有该Activity的引用。</p>
+<h4 id="Static-Views"><a href="#Static-Views" class="headerlink" title="Static Views"></a>Static Views</h4><p>如果一个View初始化耗费大量资源，而且在一个Activity生命周期内保持不变，那可以把它变成static，加载到视图树上(View Hierachy)，，当Activity被销毁时，应当释放资源。把static view置null即可，但是还是不建议用这个static view的方法</p>
+<h4 id="Inner-Classes"><a href="#Inner-Classes" class="headerlink" title="Inner Classes"></a>Inner Classes</h4><p>非静态内部类持有外部类的隐式引用将会导致内存泄漏<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> TestResource mResource = <span class="keyword">null</span>;  </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;  </div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </div><div class="line">        setContentView(R.layout.activity_main);  </div><div class="line">        <span class="keyword">if</span>(mResource == <span class="keyword">null</span>)&#123;  </div><div class="line">            mResource = <span class="keyword">new</span> TestResource();  </div><div class="line">        &#125;  </div><div class="line">        <span class="comment">//...  </span></div><div class="line">    &#125;  </div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">TestResource</span> </span>&#123;  </div><div class="line">        <span class="comment">//...  </span></div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Activity中有个内部类，这样做可以提高可读性和封装性。该内部类创建了一个静态的对象，将会持有外部类即Activity的引用，将导致Activity的内存资源不能正常回收。正确的做法为：将该内部类设为静态内部类或将该内部类抽取出来封装成一个单例，如果需要使用Context，请使用ApplicationContext ，或者在页面销毁的时候置空</p>
+<h3 id="Anonymous-Classes"><a href="#Anonymous-Classes" class="headerlink" title="Anonymous Classes"></a>Anonymous Classes</h3><p>匿名内部类如果持有了外部的Activity，就会导致Activity销毁的时候不被回收<br>正如使用内部类一样，只要不跨越生命周期，内部类是完全没问题的。但是，这些类是用于产生后台线程的，这些Java线程是全局的，而且持有创建者的引用（即匿名类的引用），而匿名类又持有外部类的引用。线程是可能长时间运行的，所以一直持有Activity的引用导致当销毁时无法回收。例如handler，runnable<br>所以我们需要使用静态内部类，不持有外部类的引用，打破了链式引用。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">NimbleHandler</span> <span class="keyword">extends</span> <span class="title">Handler</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message message)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.handleMessage(message);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">NimbleRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">createHandler</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">new</span> NimbleHandler().postDelayed(<span class="keyword">new</span> NimbleRunnable(), Long.MAX_VALUE &gt;&gt; <span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>但是，如果你坚持使用匿名类，创建一个静态匿名内部类，然后对个静态匿名内部持有的对象使用弱引用，这样在回收时也可以回收静态匿名内部持有的对象，这样虽然避免了Activity泄漏，不过比如handler的Looper线程的消息队列中还是可能会有待处理的消息，所以我们在Activity的Destroy时或者Stop时应该移除消息队列中的消息，只要在生命周期结束时中断线程就可以。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;  </div><div class="line">    <span class="keyword">private</span> MyHandler mHandler = <span class="keyword">new</span> MyHandler(<span class="keyword">this</span>);  </div><div class="line">    <span class="keyword">private</span> TextView mTextView ;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MyHandler</span> <span class="keyword">extends</span> <span class="title">Handler</span> </span>&#123;  </div><div class="line">        <span class="keyword">private</span> WeakReference&lt;Context&gt; reference;  </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MyHandler</span><span class="params">(Context context)</span> </span>&#123;  </div><div class="line">            reference = <span class="keyword">new</span> WeakReference&lt;&gt;(context);  </div><div class="line">        &#125;  </div><div class="line">        <span class="meta">@Override</span>  </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;  </div><div class="line">            MainActivity activity = (MainActivity) reference.get();  </div><div class="line">            <span class="keyword">if</span>(activity != <span class="keyword">null</span>)&#123;  </div><div class="line">                activity.mTextView.setText(<span class="string">""</span>);  </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;  </div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </div><div class="line">        setContentView(R.layout.activity_main);  </div><div class="line">        mTextView = (TextView)findViewById(R.id.textview);  </div><div class="line">        loadData();  </div><div class="line">    &#125;  </div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">loadData</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="comment">//...request  </span></div><div class="line">        Message message = Message.obtain();  </div><div class="line">        mHandler.sendMessage(message);  </div><div class="line">    &#125;  </div><div class="line">    </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="keyword">super</span>.onDestroy();  </div><div class="line">        mHandler.removeCallbacksAndMessages(<span class="keyword">null</span>);  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="资源未关闭造成的内存泄漏"><a href="#资源未关闭造成的内存泄漏" class="headerlink" title="资源未关闭造成的内存泄漏"></a>资源未关闭造成的内存泄漏</h4><p>对于使用了BraodcastReceiver，ContentObserver，File，Cursor，Stream，Bitmap等资源的使用，应该在Activity销毁时及时关闭或者注销，否则这些资源将不会被回收，造成内存泄漏。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束<i class="fa fa-heart-o"></i>感谢阅读------</div>
+    
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/23/Kotlin/" rel="next" title="Kotlin">
+                <i class="fa fa-chevron-left"></i> Kotlin
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTE2Mi81NzI5"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="yq" />
+          <p class="site-author-name" itemprop="name">yq</p>
+           
+              <p class="site-description motion-element" itemprop="description">永远保持一颗对未知事物的好奇心</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              推荐阅读
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenzekun.cn/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.html" title="配置教程" target="_blank">配置教程</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原因"><span class="nav-number">1.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存分配"><span class="nav-number">2.</span> <span class="nav-text">内存分配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象以及对象引用（栈和堆）"><span class="nav-number">2.1.</span> <span class="nav-text">对象以及对象引用（栈和堆）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常量池"><span class="nav-number">2.2.</span> <span class="nav-text">常量池</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串"><span class="nav-number">2.2.1.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基础类型的变量和常量"><span class="nav-number">2.2.2.</span> <span class="nav-text">基础类型的变量和常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#成员变量和局部变量"><span class="nav-number">2.2.3.</span> <span class="nav-text">成员变量和局部变量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象引用"><span class="nav-number">3.</span> <span class="nav-text">对象引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断对象是否需要被回收"><span class="nav-number">4.</span> <span class="nav-text">判断对象是否需要被回收</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GC-root"><span class="nav-number">4.1.</span> <span class="nav-text">GC root</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">4.2.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于标记阶段有几个关键点是值得注意的："><span class="nav-number">4.3.</span> <span class="nav-text">关于标记阶段有几个关键点是值得注意的：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存泄漏"><span class="nav-number">5.</span> <span class="nav-text">内存泄漏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Android中的内存泄漏"><span class="nav-number">5.1.</span> <span class="nav-text">Android中的内存泄漏</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Static-Activities"><span class="nav-number">5.1.1.</span> <span class="nav-text">Static Activities</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单例模式引起的内存泄漏"><span class="nav-number">5.1.2.</span> <span class="nav-text">单例模式引起的内存泄漏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Static-Views"><span class="nav-number">5.1.3.</span> <span class="nav-text">Static Views</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Inner-Classes"><span class="nav-number">5.1.4.</span> <span class="nav-text">Inner Classes</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Anonymous-Classes"><span class="nav-number">5.2.</span> <span class="nav-text">Anonymous Classes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#资源未关闭造成的内存泄漏"><span class="nav-number">5.2.1.</span> <span class="nav-text">资源未关闭造成的内存泄漏</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-diamond"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yq</span>
+</div>
+
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DFET4G5HNHDKWGHhpXFCwA4b-gzGzoHsz", "BTeLzbY0e13p68vdSLY7BNik");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  <!-- 背景动画
+<script type="text/javascript" src="/js/src/particle.js"></script>
+ 页面点击小红心
+<script type="text/javascript" src="/js/src/love.js"></script>-->
+</body>
+</html>

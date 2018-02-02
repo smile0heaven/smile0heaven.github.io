@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="Kotlin," />
 
 
 
@@ -94,22 +94,19 @@
 
 
 
-<meta name="description" content="Binder1) 首先，Binder分为Client和Server两个进程。2) 图中的IPC就是进程间通信的意思。图中的ServiceManager，负责把Binder Server注册到一个容器中。ServiceManager比喻成电话局，存储着每个住宅的座机电话，还是很恰当的。张三给李四打电话，拨打电话号码，会先转接到电话局，电话局的接线员查到这个电话号码的地址，因为李四的电话号码之前在电话">
-<meta name="keywords" content="Android">
+<meta name="description" content="记录在kotlin中遇到的坑当我们声明一个对象，确认他非空，但是不想在初始化的时候赋值，可以在声明的时候加上lateinit修饰符  IterableIterable接口是最基本的接口，声明了Kotlin中集合的通用方法。fun iterator(): Iterator&amp;lt;T&amp;gt;- 返回该集合的元素的迭代器   MutableIterableMutableIterable接口继承于Iter">
+<meta name="keywords" content="Kotlin">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android底层知识">
-<meta property="og:url" content="http://yoursite.com/2017/12/22/Android 底层知识/index.html">
+<meta property="og:title" content="Kotlin">
+<meta property="og:url" content="http://yoursite.com/2018/01/23/Kotlin/index.html">
 <meta property="og:site_name" content="Smile&#39;Blog">
-<meta property="og:description" content="Binder1) 首先，Binder分为Client和Server两个进程。2) 图中的IPC就是进程间通信的意思。图中的ServiceManager，负责把Binder Server注册到一个容器中。ServiceManager比喻成电话局，存储着每个住宅的座机电话，还是很恰当的。张三给李四打电话，拨打电话号码，会先转接到电话局，电话局的接线员查到这个电话号码的地址，因为李四的电话号码之前在电话">
-<meta property="og:image" content="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223325025-1448613892.png">
-<meta property="og:image" content="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223354650-984999229.png">
-<meta property="og:image" content="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223432791-1010721944.png">
-<meta property="og:image" content="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223504650-228437964.png">
-<meta property="og:updated_time" content="2018-01-16T08:03:20.495Z">
+<meta property="og:description" content="记录在kotlin中遇到的坑当我们声明一个对象，确认他非空，但是不想在初始化的时候赋值，可以在声明的时候加上lateinit修饰符  IterableIterable接口是最基本的接口，声明了Kotlin中集合的通用方法。fun iterator(): Iterator&amp;lt;T&amp;gt;- 返回该集合的元素的迭代器   MutableIterableMutableIterable接口继承于Iter">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/3466D08563474314969B7BD04665F1A0?method=download&shareKey=9798eaac1db2ef1600f7e7d04a1f9c67">
+<meta property="og:updated_time" content="2018-02-02T09:53:04.949Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android底层知识">
-<meta name="twitter:description" content="Binder1) 首先，Binder分为Client和Server两个进程。2) 图中的IPC就是进程间通信的意思。图中的ServiceManager，负责把Binder Server注册到一个容器中。ServiceManager比喻成电话局，存储着每个住宅的座机电话，还是很恰当的。张三给李四打电话，拨打电话号码，会先转接到电话局，电话局的接线员查到这个电话号码的地址，因为李四的电话号码之前在电话">
-<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223325025-1448613892.png">
+<meta name="twitter:title" content="Kotlin">
+<meta name="twitter:description" content="记录在kotlin中遇到的坑当我们声明一个对象，确认他非空，但是不想在初始化的时候赋值，可以在声明的时候加上lateinit修饰符  IterableIterable接口是最基本的接口，声明了Kotlin中集合的通用方法。fun iterator(): Iterator&amp;lt;T&amp;gt;- 返回该集合的元素的迭代器   MutableIterableMutableIterable接口继承于Iter">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/3466D08563474314969B7BD04665F1A0?method=download&shareKey=9798eaac1db2ef1600f7e7d04a1f9c67">
 
 
 
@@ -137,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/22/Android 底层知识/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/23/Kotlin/"/>
 
 
 
 
 
-  <title>Android底层知识 | Smile'Blog</title>
+  <title>Kotlin | Smile'Blog</title>
   
 
 
@@ -301,7 +298,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/22/Android 底层知识/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/23/Kotlin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yq">
@@ -318,7 +315,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android底层知识</h1>
+          <h1 class="post-title" itemprop="name headline">Kotlin</h1>
         
 
         <div class="post-meta">
@@ -330,8 +327,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T00:00:00+08:00">
-                2017-12-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-23T00:00:00+08:00">
+                2018-01-23
               </time>
             
 
@@ -353,8 +350,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/Kotlin/" itemprop="url" rel="index">
+                    <span itemprop="name">Kotlin</span>
                   </a>
                 </span>
 
@@ -370,7 +367,7 @@
 
           
           
-             <span id="/2017/12/22/Android 底层知识/" class="leancloud_visitors" data-flag-title="Android底层知识">
+             <span id="/2018/01/23/Kotlin/" class="leancloud_visitors" data-flag-title="Kotlin">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -397,7 +394,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  801
+                  1,364
                 </span>
               
 
@@ -413,7 +410,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  3
+                  5
                 </span>
               
             </div>
@@ -431,25 +428,98 @@
       
 
       
-        <h1 id="Binder"><a href="#Binder" class="headerlink" title="Binder"></a>Binder</h1><p>1) 首先，Binder分为Client和Server两个进程。<br>2) 图中的IPC就是进程间通信的意思。<br>图中的ServiceManager，负责把Binder Server注册到一个容器中。<br>ServiceManager比喻成电话局，存储着每个住宅的座机电话，还是很恰当的。张三给李四打电话，拨打电话号码，会先转接到电话局，电话局的接线员查到这个电话号码的地址，因为李四的电话号码之前在电话局注册过，所以就能拨通；没注册，就会提示该号码不存在。<br>对照着Android Binder机制，对着上面这图，张三就是Binder Client，李四就是Binder Server，电话局就是ServiceManager，电话局的接线员在这个过程中做了很多事情，对应着图中的Binder驱动</p>
-<p><img src="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223325025-1448613892.png" alt=""></p>
-<p> 3) Client想要直接调用Server的add方法，是不可以的，因为它们在不同的进程中，这时候就需要Binder来帮忙了。<br>首先是Server在SM这个容器中注册。其次，Client想要调用Server的add方法，就需要先获取Server对象， 但是SM不会把真正的Server对象返回给Client，而是把Server的一个代理对象返回给Client，也就是Proxy。然后，Client调用Proxy的add方法，SM会帮他去调用Server的add方法，并把结果返回给Client。<br> <img src="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223354650-984999229.png" alt=""></p>
-<h1 id="AIDL"><a href="#AIDL" class="headerlink" title="AIDL"></a>AIDL</h1><p> Android系统中很多系统服务都是aidl，比如说剪切板<br> AIDL中需要知道下面几个类：</p>
-<ul>
-<li>IBinder</li>
-<li>IInterface</li>
-<li>Binder</li>
-<li>Proxy</li>
-<li>Stub </li>
+        <h2 id="记录在kotlin中遇到的坑"><a href="#记录在kotlin中遇到的坑" class="headerlink" title="记录在kotlin中遇到的坑"></a>记录在kotlin中遇到的坑</h2><p>当我们声明一个对象，确认他非空，但是不想在初始化的时候赋值，可以在声明的时候加上lateinit修饰符</p>
+<hr>
+<h3 id="Iterable"><a href="#Iterable" class="headerlink" title="Iterable"></a>Iterable</h3><p>Iterable接口是最基本的接口，声明了Kotlin中集合的通用方法。<br><code>fun iterator(): Iterator&lt;T&gt;</code>- 返回该集合的元素的迭代器  </p>
+<h3 id="MutableIterable"><a href="#MutableIterable" class="headerlink" title="MutableIterable"></a>MutableIterable</h3><p>MutableIterable接口继承于Iterabl接口，并重写了iterator方法，从该接口继承的类可以表示为可以被迭代并且支持在迭代期间移除元素的元素序列。<br><code>fun iterator(): MutableIterator&lt;T&gt;</code> - 返回该集合的元素的迭代器<br><a id="more"></a></p>
+<h3 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h3><p>Collection<e>接口继承于Iterable接口，是集合的通用接口，但仅封装了对集合的只读方法，如果想添加或者删除集合，需调用MutableCollection接口的方法。  </e></p>
+<h4 id="成员属性"><a href="#成员属性" class="headerlink" title="成员属性"></a>成员属性</h4><p>val size: Int - 集合中元素的数量</p>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><ul>
+<li>isEmpty(): Boolean - 判断集合是否为空  </li>
+<li>fun contains(E): Boolean - 判断集合中是否包含某一元素  </li>
+<li>fun containsAll(Collection<e>): Boolean - 判断集合中是否包含某一集合  </e></li>
+<li>fun iterator(): Iterator<e> - 返回该只读集合的元素的迭代器  </e></li>
 </ul>
-<p>当我们自定义一个aidl文件时（比如MyAidl.aidl，里面有一个sum方法），Android Studio会帮我们生成一个类文件MyAidl.java，如下图所示：<br> <img src="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223432791-1010721944.png" alt=""></p>
-<p>MyAidl.java这个生成文件中，包括MyAidl接口，以及Stub和Proxy两个实现了MyAidl接口的类，其中Stub是定义在MyAidl接口中的，而Proxy则定义在Stub类中。为什么要嵌套那么多层级，因为有多个AIDL类的时候，Stub和Proxy类就会重名，把它们放在各自的AIDL接口中，就必须MyAidl.Stub这样去使用，就区分开了。<br> <img src="http://images2015.cnblogs.com/blog/13430/201705/13430-20170516223504650-228437964.png" alt=""><br> 1) 从Client看起，对于AIDL的使用者，我们这么写程序：MyAidl.Stub.asInterface(某IBinder对象).sum(1, 2);         //最好在执行sum方法前判空。<br>asInterface方法的作用是判断参数——也就是IBinder对象，和自己是否在同一个进程：</p>
+<h3 id="MutableCollection"><a href="#MutableCollection" class="headerlink" title="MutableCollection"></a>MutableCollection<e></e></h3><p>MutableCollection<e>继承于Iterable<e>,Collection<e>接口,封装了添加或移除集合中元素的方法。</e></e></e></p>
 <ul>
-<li>是，则直接转换、直接使用，接下来就跟Binder跨进程通信无关啦；</li>
-<li><p>否，则把这个IBinder参数包装成一个Proxy对象，这时调用Stub的sum方法，间接调用Proxy的sum方法。return new MyAidl.Stub.Proxy(obj);<br>2) Proxy在自己的sum方法中，会使用Parcelable来准备数据，把函数名称、函数参数都写入_data，让_reply接收函数返回值。最后使用IBinder的transact方法，把数据就传给Binder的Server端了。mRemote.transact(Stub.TRANSACTION_addBook, _data, _reply, 0); //这里的mRemote就是asInterface方法传过来的obj参数</p>
-<p>3) Server则是通过onTransact方法接收Client进程传过来的数据，包括函数名称、函数参数，找到对应的函数，这里是sum，把参数喂进去，得到结果，返回。<br>所以onTransact函数经历了读数据–&gt;执行要调用的函数–&gt;把执行结果再写数据的过程</p>
-</li>
+<li>fun add(E): Boolean - 向集合中添加元素。添加成功，返回ture，否则返回false。</li>
+<li>fun addAll(Collection): Boolean - 向集合中添加一个集合。添加成功，返回ture，否则返回false。</li>
+<li>fun remove(E): Boolean - 移除集合中的元素。移除成功，返回ture，否则返回false。</li>
+<li>fun removeAll(Collection): Boolean - 移除集合中的一个集合。移除成功，返回ture，否则返回false。</li>
+<li>fun retainAll(Collection): Boolean - 判断集合中是否包含一个集合。如果包含，返回ture，否则返回false。</li>
+<li>fun clear(): Unit - 将集合中的元素清空</li>
 </ul>
+<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>Set是最简单的一种集合。集合中的对象不按特定的方式排序，并且没有重复对象。</p>
+<p>Kotlin没有专门的语法用来创建set,可以使用标准库中的方法, 比如setOf(),mutableSetOf()。</p>
+<ul>
+<li>emptySet(): Set - 创建一个空的只读Set</li>
+<li>setOf(vararg T): Set - 创建一个只读Set</li>
+<li>mutableSetOf(vararg elements): MutableSet - 创建一个可变Set  </li>
+</ul>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>List<e>接口继承于Collection<e>接口，元素以线性方式存储，集合中可以存放重复对象。</e></e></p>
+<ol>
+<li>查询操作  </li>
+</ol>
+<ul>
+<li>val size: Int - 集合中元素的数量</li>
+<li>fun isEmpty(): Boolean - 判断集合是否为空  </li>
+<li>fun contains(E): Boolean - 判断集合中是否包含某一元素  </li>
+<li>fun iterator(): Iterator - 返回该只读集合的元素的迭代器  </li>
+</ul>
+<ol>
+<li>批量操作</li>
+</ol>
+<ul>
+<li>fun containsAll(Collection<e>): Boolean - 判断集合中是否包含某一集合</e></li>
+<li>索引查询操作  </li>
+<li>fun get(Int): E - 查寻集合中某个位置的元素  </li>
+</ul>
+<ol>
+<li>搜索操作</li>
+</ol>
+<ul>
+<li>fun indexOf(E): Int - 返回列表中指定元素首次出现的索引，如果元素不包含在列表中，则返回-1  </li>
+<li>fun lastIndexOf(E): Int - 返回列表中指定元素最后一次出现的索引，如果元素不包含在列表中，则返回-1  </li>
+</ul>
+<ol>
+<li>迭代器</li>
+</ol>
+<ul>
+<li>fun listIterator(): ListIterator - 返回一个集合的迭代器</li>
+<li>fun listIterator(Int): ListIterator - 从指定位置开始，返回集合的迭代器</li>
+<li>fun subList(fromIndex: Int, toIndex: Int): List - 返回此列表中指定的[fromIndex]（包括）和[toIndex]（不包括）之间的集合<h3 id="MutableList"><a href="#MutableList" class="headerlink" title="MutableList"></a>MutableList</h3></li>
+</ul>
+<p>MutableList<e>接口继承于List<e>，MutableCollection<e>，是对只读集合的扩展，增加了了对集合的添加及删除元素的操作。<br>1.修改操作  </e></e></e></p>
+<ul>
+<li>fun add(E): Boolean - 向集合中添加元素。添加成功，返回ture，否则返回false。</li>
+<li>fun remove(E): Boolean - 移除集合中的元素。移除成功，返回ture，否则返回false</li>
+</ul>
+<ol>
+<li>批量操作</li>
+</ol>
+<ul>
+<li>fun addAll(Collection): Boolean - 向集合中添加一个集合。添加成功，返回ture，否则返回false。</li>
+<li>fun removeAll(Collection): Boolean - 移除集合中的一个集合。移除成功，返回ture，否则返回false。</li>
+<li>retainAll(Collection): Boolean - 判断集合中是否包含一个集合。如果包含，返回ture，否则返回false。</li>
+<li>fun clear(): Unit - 将集合中的元素清空  </li>
+</ul>
+<p>3.索引操作</p>
+<ul>
+<li>fun set(Int, E): E - 用指定的元素替换此列表中指定位置的元素，返回该位置的原元素</li>
+<li>fun add(Int, E): Unit - 在指定位置添加一个元素</li>
+<li>fun removeAt(Int): E - 移除指定索引处的元素  </li>
+</ul>
+<p>4.迭代器 </p>
+<ul>
+<li>fun listIterator(): MutableListIterator - 返回一个集合的迭代器</li>
+<li>fun listIterator(Int): MutableListIterator - 从指定位置开始，返回集合的迭代器</li>
+<li>fun subList(fromIndex: Int, toIndex: Int): MutableList - 返回此列表中指定的[fromIndex]（包括）和[toIndex]（不包括）之间的集合</li>
+</ul>
+<p>与set一样，Kotlin并没有提供创建List的函数，如果想创建一个List,可以调用标准库中的方法，listOf() , mutableListOf()。  </p>
+<h3 id="listOf"><a href="#listOf" class="headerlink" title="listOf"></a>listOf</h3><p>listOf()是使用ArrayList实现的，返回的list是只读的，其内存效率更高。在开发过程中，可以尽可能的多用只读List,可以在一定程度上提高内存效率。</p>
+<h2 id="toList"><a href="#toList" class="headerlink" title="toList"></a>toList</h2><p>toList是一个扩展函数，其只是单纯的赋值list内的内容，从而返回的是一个只读的List.</p>
+<hr>
+<h3 id="kotlin-android-extensions"><a href="#kotlin-android-extensions" class="headerlink" title="kotlin-android-extensions"></a><a href="https://www.kotlincn.net/docs/tutorials/android-plugin.html" target="_blank" rel="external">kotlin-android-extensions</a></h3><p>Android Studio3.0已经集成了kotlin的插件，我们使用kotlin-android-extensions，只需要在模块中启用插件<code>apply plugin: &#39;kotlin-android-extensions&#39;</code><br>网上很多教程都是引入依赖包的方式，但是现在并不需要 ，不然会和我一样有个非常坑爹，并且找不到解决方法的问题出现<br><img src="https://note.youdao.com/yws/api/personal/file/3466D08563474314969B7BD04665F1A0?method=download&amp;shareKey=9798eaac1db2ef1600f7e7d04a1f9c67" alt="image"><br><strong>所以还是要看官方文档最靠谱</strong></p>
 
       
     </div>
@@ -490,7 +560,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
+            <a href="/tags/Kotlin/" rel="tag"><i class="fa fa-tag"></i> Kotlin</a>
           
         </div>
       
@@ -503,8 +573,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/21/Android 加载机制/" rel="next" title="Android 加载机制">
-                <i class="fa fa-chevron-left"></i> Android 加载机制
+              <a href="/2018/01/23/Lambda/" rel="next" title="Lambda">
+                <i class="fa fa-chevron-left"></i> Lambda
               </a>
             
           </div>
@@ -513,8 +583,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/29/SmartRefreshLayout/" rel="prev" title="SmartRefreshLayout源码解析">
-                SmartRefreshLayout源码解析 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/30/内存泄漏/" rel="prev" title="内存泄漏">
+                内存泄漏 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -660,7 +730,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Binder"><span class="nav-number">1.</span> <span class="nav-text">Binder</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AIDL"><span class="nav-number">2.</span> <span class="nav-text">AIDL</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#记录在kotlin中遇到的坑"><span class="nav-number">1.</span> <span class="nav-text">记录在kotlin中遇到的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Iterable"><span class="nav-number">1.1.</span> <span class="nav-text">Iterable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MutableIterable"><span class="nav-number">1.2.</span> <span class="nav-text">MutableIterable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection"><span class="nav-number">1.3.</span> <span class="nav-text">Collection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#成员属性"><span class="nav-number">1.3.1.</span> <span class="nav-text">成员属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数"><span class="nav-number">1.3.2.</span> <span class="nav-text">函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MutableCollection"><span class="nav-number">1.4.</span> <span class="nav-text">MutableCollection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set"><span class="nav-number">1.5.</span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List"><span class="nav-number">1.6.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MutableList"><span class="nav-number">1.7.</span> <span class="nav-text">MutableList</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#listOf"><span class="nav-number">1.8.</span> <span class="nav-text">listOf</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#toList"><span class="nav-number">2.</span> <span class="nav-text">toList</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#kotlin-android-extensions"><span class="nav-number">2.1.</span> <span class="nav-text">kotlin-android-extensions</span></a></li></ol></li></ol></div>
             
 
           </div>
