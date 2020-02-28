@@ -1,0 +1,976 @@
+<!doctype html>
+<link href="http://7u2ss1.com1.z0.glb.clouddn.com/harlem-shake-style.css" rel="stylesheet" type="text/css" />
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="首先判断当前线程是不是主线程，如果是分析LeakCanary的线程的话，就不应该初始化12345if (LeakCanary.isInAnalyzerProcess(this)) &amp;#123;//1            // This process is dedicated to LeakCanary for heap analysis.            // You should n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeakCanary源码分析">
+<meta property="og:url" content="http://yoursite.com/2019/06/20/LeakCanary源码分析/index.html">
+<meta property="og:site_name" content="Smile&#39;Blog">
+<meta property="og:description" content="首先判断当前线程是不是主线程，如果是分析LeakCanary的线程的话，就不应该初始化12345if (LeakCanary.isInAnalyzerProcess(this)) &amp;#123;//1            // This process is dedicated to LeakCanary for heap analysis.            // You should n">
+<meta property="og:updated_time" content="2020-02-28T03:24:49.573Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeakCanary源码分析">
+<meta name="twitter:description" content="首先判断当前线程是不是主线程，如果是分析LeakCanary的线程的话，就不应该初始化12345if (LeakCanary.isInAnalyzerProcess(this)) &amp;#123;//1            // This process is dedicated to LeakCanary for heap analysis.            // You should n">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/20/LeakCanary源码分析/"/>
+
+
+
+
+
+  <title>LeakCanary源码分析 | Smile'Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b652010e74075b0b835d3b2ba6a1d824";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Smile'Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/20/LeakCanary源码分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yq">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Smile'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LeakCanary源码分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-20T00:00:00+08:00">
+                2019-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/06/20/LeakCanary源码分析/" class="leancloud_visitors" data-flag-title="LeakCanary源码分析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,736
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li>首先判断当前线程是不是主线程，如果是分析LeakCanary的线程的话，就不应该初始化<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if (LeakCanary.isInAnalyzerProcess(this)) &#123;//1</div><div class="line">            // This process is dedicated to LeakCanary for heap analysis.</div><div class="line">            // You should not init your app in this process.</div><div class="line">            return;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>2.执行install方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LeakCanary.install(this);</div></pre></td></tr></table></figure></p>
+<p>我们来分析一下该方法中的源码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Creates a &#123;@link RefWatcher&#125; that works out of the box, and starts watching activity</div><div class="line"> * references (on ICS+).</div><div class="line"> */</div><div class="line">public static @NonNull RefWatcher install(@NonNull Application application) &#123;</div><div class="line">//DisplayLeakService这个用于最终展示分析泄露的服务</div><div class="line">//listenerServiceClass这个会生成一个HeapAnalyzerService 该服务用于分析内存泄露这个后面的分析中可以看出来</div><div class="line">  return refWatcher(application).listenerServiceClass(DisplayLeakService.class)</div><div class="line">      .excludedRefs(AndroidExcludedRefs.createAppDefaults().build())</div><div class="line">      .buildAndInstall();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>该方法主要生成了一个RefWatcher对象，还有一个DisplayLeakService服务。该服务主要是用于分析HeapDump，写入一个记录文件，并弹出一个Notification，我们看一下buildAndInstall方法，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">  * Creates a &#123;@link RefWatcher&#125; instance and makes it available through &#123;@link</div><div class="line">  * LeakCanary#installedRefWatcher()&#125;.</div><div class="line">  *</div><div class="line">  * Also starts watching activity references if &#123;@link #watchActivities(boolean)&#125; was set to true.</div><div class="line">  *</div><div class="line">  * @throws UnsupportedOperationException if called more than once per Android process.</div><div class="line">  */</div><div class="line"> public @NonNull RefWatcher buildAndInstall() &#123;</div><div class="line"> //判断buildAndInstall是否已经执行过</div><div class="line">   if (LeakCanaryInternals.installedRefWatcher != null) &#123;</div><div class="line">     throw new UnsupportedOperationException(&quot;buildAndInstall() should only be called once.&quot;);</div><div class="line">   &#125;</div><div class="line">   //生成一个RefWatcher对象</div><div class="line">   RefWatcher refWatcher = build();</div><div class="line">   if (refWatcher != DISABLED) &#123;</div><div class="line">   //是否展示内存泄露的页面，这个默认是不展示的</div><div class="line">     if (enableDisplayLeakActivity) &#123;</div><div class="line">       LeakCanaryInternals.setEnabledAsync(context, DisplayLeakActivity.class, true);</div><div class="line">     &#125;</div><div class="line">     //是否监听activity</div><div class="line">     if (watchActivities) &#123;</div><div class="line">     我们主要来观察一下activity的方法</div><div class="line">       ActivityRefWatcher.install(context, refWatcher);</div><div class="line">     &#125;</div><div class="line">           //是否监听Fragment</div><div class="line">     if (watchFragments) &#123;</div><div class="line">       FragmentRefWatcher.Helper.install(context, refWatcher);</div><div class="line">     &#125;</div><div class="line">   &#125;</div><div class="line">   LeakCanaryInternals.installedRefWatcher = refWatcher;</div><div class="line">   return refWatcher;</div><div class="line"> &#125;</div><div class="line"> ``` </div><div class="line"> </div><div class="line">   ActivityRefWatcher.install(context, refWatcher);就是实际监听的方法   </div><div class="line">#### watch</div></pre></td></tr></table></figure></p>
+<p>  public static void install(@NonNull Context context, @NonNull RefWatcher refWatcher) {<br>    Application application = (Application) context.getApplicationContext();<br>    //生成了一个ActivityRefWatcher对象<br>    ActivityRefWatcher对象 activityRefWatcher = new ActivityRefWatcher(application, refWatcher);<br>//调用application的registerActivityLifecycleCallbacks方法，可以监听每个activity页面的生命周期<br>    application.registerActivityLifecycleCallbacks(activityRefWatcher.lifecycleCallbacks);<br>  }</p>
+<p>//该callback方法就是在每个页面销毁的时候调用了watch方法来监听内存泄露<br> private final Application.ActivityLifecycleCallbacks lifecycleCallbacks =<br>      new ActivityLifecycleCallbacksAdapter() {<br>        @Override public void onActivityDestroyed(Activity activity) {<br>          refWatcher.watch(activity);<br>        }<br>      };</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<p>/**</p>
+<ul>
+<li>Watches the provided references and checks if it can be GCed. This method is non blocking,</li>
+<li>the check is done on the {@link WatchExecutor} this {@link RefWatcher} has been constructed</li>
+<li>with.<br>*</li>
+<li><p>@param referenceName An logical identifier for the watched object.<br>*/<br>public void watch(Object watchedReference, String referenceName) {<br>if (this == DISABLED) {<br> return;<br>}<br>//监听activity时,watchedReference是一个activity<br>checkNotNull(watchedReference, “watchedReference”);<br>checkNotNull(referenceName, “referenceName”);<br>final long watchStartNanoTime = System.nanoTime();<br>String key = UUID.randomUUID().toString();<br>retainedKeys.add(key);<br>final KeyedWeakReference reference =<br>   new KeyedWeakReference(watchedReference, key, referenceName, queue);</p>
+<p>ensureGoneAsync(watchStartNanoTime, reference);<br>}</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">拿到的 activity 引用，构造 KeyedWeakReference 对象，其实它继承自 WeakReference ，它是一个弱引用。构建弱引用的同时，在构造函数中添加 ReferenceQueue，当 activity 被回收时，KeyedWeakReference 对象会被添加到ReferenceQueue当中。如果出现内存泄漏，则 ReferenceQueue 找不到对应的 KeyedWeakReference 对象，那么就可以判断发生内存泄漏了。每一个KeyedWeakReferenced都有一个key，这样可以标志每一个独一无二的个KeyedWeakReference</div><div class="line">生成之后就是进行 检测回收</div><div class="line">#### ensureGoneAsync</div></pre></td></tr></table></figure>
+<p>//可以看出该方法是在一个异步线程中执行的<br> private void ensureGoneAsync(final long watchStartNanoTime, final KeyedWeakReference reference) {<br>    watchExecutor.execute(new Retryable() {<br>      @Override public Retryable.Result run() {<br>        return ensureGone(reference, watchStartNanoTime);<br>      }<br>    });<br>  }</p>
+<p>  @SuppressWarnings(“ReferenceEquality”) // Explicitly checking for named null.<br>  Retryable.Result ensureGone(final KeyedWeakReference reference, final long watchStartNanoTime) {<br>    long gcStartNanoTime = System.nanoTime();<br>    //调用watch方法花的时间<br>    long watchDurationMs = NANOSECONDS.toMillis(gcStartNanoTime - watchStartNanoTime);</p>
+<pre><code>// 移除不可达引用
+removeWeaklyReachableReferences();
+</code></pre><p>//检查是否有断点，导致产生错误的泄露判断<br>    if (debuggerControl.isDebuggerAttached()) {<br>      // The debugger can create false leaks.<br>      return RETRY;<br>    }<br>    //判断当前引用是不是不存在了，不存在则不继续执行<br>    if (gone(reference)) {<br>      return DONE;<br>    }<br>    //手动触发GC操作，gcTrigger中封装了gc操作的代码<br>    gcTrigger.runGc();</p>
+<pre><code>//再次 移除不可达引用
+removeWeaklyReachableReferences();
+//如果两次判定都没有被回收，则开始分析这个引用，最终生成HeapDump信息
+if (!gone(reference)) {
+  long startDumpHeap = System.nanoTime();
+  //记录gc以及清除所花费的时间
+  long gcDurationMs = NANOSECONDS.toMillis(startDumpHeap - gcStartNanoTime);
+</code></pre><p>//生成一个文件，来保存内存分析信息<br>      File heapDumpFile = heapDumper.dumpHeap();<br>      if (heapDumpFile == RETRY_LATER) {<br>        // Could not dump the heap.<br>        return RETRY;<br>      }<br>      //生成分析文件的时间<br>      long heapDumpDurationMs = NANOSECONDS.toMillis(System.nanoTime() - startDumpHeap);</p>
+<pre><code>HeapDump heapDump = heapDumpBuilder.heapDumpFile(heapDumpFile).referenceKey(reference.key)
+    .referenceName(reference.name)
+    .watchDurationMs(watchDurationMs)
+    .gcDurationMs(gcDurationMs)
+    .heapDumpDurationMs(heapDumpDurationMs)
+    .build();
+</code></pre><p>//解析这个分析,这个listener是创建RefWatcher初始化并传入的ServiceHeapDumpListener<br>      heapdumpListener.analyze(heapDump);<br>    }<br>    return DONE;<br>  }</p>
+<p>  //该方法将已经回收的引用移除<br>  private void removeWeaklyReachableReferences() {<br>    // WeakReferences are enqueued as soon as the object to which they point to becomes weakly<br>    // reachable. This is before finalization or garbage collection has actually happened.<br>    KeyedWeakReference ref;<br>    while ((ref = (KeyedWeakReference) queue.poll()) != null) {<br>      retainedKeys.remove(ref.key);<br>    }<br>  }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1. 弱引用与ReferenceQueue联合使用，如果弱引用关联的对象被回收，则会把这个弱引用加入到ReferenceQueue中；通过这个原理，可以看出removeWeaklyReachableReferences()执行后，会对应删除KeyedWeakReference的数据。如果这个引用继续存在，那么就说明没有被回收。</div><div class="line">2. 为了确保最大保险的判定是否被回收，一共执行了两次回收判定，包括一次手动GC后的回收判定。两次都没有被回收，很大程度上说明了这个对象的内存被泄漏了，但并不能100%保证；因此LeakCanary是存在极小程度的误差的。</div><div class="line"> heapdumpListener.analyze(heapDump)分析生成的heapDump文件主要使用了HeapAnalyzerService的runAnalysis方法</div></pre></td></tr></table></figure></p>
+<p>public final class ServiceHeapDumpListener implements HeapDump.Listener {</p>
+<p>  @Override public void analyze(@NonNull HeapDump heapDump) {<br>    checkNotNull(heapDump, “heapDump”);<br>    HeapAnalyzerService.runAnalysis(context, heapDump, listenerServiceClass);<br>  }<br>  }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">在HeapAnalyzerService服务中</div></pre></td></tr></table></figure></p>
+<p>/**</p>
+<ul>
+<li>This service runs in a separate process to avoid slowing down the app process or making it run</li>
+<li><p>out of memory.<br>*/<br>public final class HeapAnalyzerService extends ForegroundService<br> implements AnalyzerProgressListener {</p>
+<p>private static final String LISTENER_CLASS_EXTRA = “listener_class_extra”;<br>private static final String HEAPDUMP_EXTRA = “heapdump_extra”;</p>
+</li>
+</ul>
+<p>//新建一个HeapAnalyzerService前台服务<br>  public static void runAnalysis(Context context, HeapDump heapDump,<br>      Class&lt;? extends AbstractAnalysisResultService&gt; listenerServiceClass) {<br>    setEnabledBlocking(context, HeapAnalyzerService.class, true);<br>    setEnabledBlocking(context, listenerServiceClass, true);<br>    Intent intent = new Intent(context, HeapAnalyzerService.class);<br>    intent.putExtra(LISTENER_CLASS_EXTRA, listenerServiceClass.getName());<br>    intent.putExtra(HEAPDUMP_EXTRA, heapDump);<br>    ContextCompat.startForegroundService(context, intent);<br>  }</p>
+<p>  public HeapAnalyzerService() {<br>    super(HeapAnalyzerService.class.getSimpleName(), R.string.leak_canary_notification_analysing);<br>  }</p>
+<p>//主要实现方法<br>  @Override protected void onHandleIntentInForeground(@Nullable Intent intent) {<br>    if (intent == null) {<br>      CanaryLog.d(“HeapAnalyzerService received a null intent, ignoring.”);<br>      return;<br>    }<br>    String listenerClassName = intent.getStringExtra(LISTENER_CLASS_EXTRA);<br>    HeapDump heapDump = (HeapDump) intent.getSerializableExtra(HEAPDUMP_EXTRA);</p>
+<pre><code>HeapAnalyzer heapAnalyzer =
+    new HeapAnalyzer(heapDump.excludedRefs, this, heapDump.reachabilityInspectorClasses);
+</code></pre><p>//调用AnalysisResult的checkForLeak方法来分析文件<br>    AnalysisResult result = heapAnalyzer.checkForLeak(heapDump.heapDumpFile, heapDump.referenceKey,<br>        heapDump.computeRetainedHeapSize);<br>    AbstractAnalysisResultService.sendResultToListener(this, listenerClassName, heapDump, result);<br>  }</p>
+<p>  @Override public void onProgressUpdate(Step step) {<br>    int percent = (int) ((100f * step.ordinal()) / Step.values().length);<br>    CanaryLog.d(“Analysis in progress, working on: %s”, step.name());<br>    String lowercase = step.name().replace(“_”, “ “).toLowerCase();<br>    String message = lowercase.substring(0, 1).toUpperCase() + lowercase.substring(1);<br>    showForegroundNotification(100, percent, false, message);<br>  }<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">我们进入checkForLeak方法中发现最终</div></pre></td></tr></table></figure>
+<p>Snapshot snapshot = parser.parse();<br>```<br>调用了这个对象来分析，这个是square公司出的HAHA分析库</p>
+<p>总结：<br>LeakCanary原理</p>
+<ol>
+<li>首先通过application的registerActivityLifecycleCallbacks监听，在activity的 onDestroy中调用watch方法<br>2.watch方法中讲每一个activity引用放到一个WeakReference中</li>
+<li>这个WeakReference关联到一个ReferenceQueue  </li>
+<li>调用ensureGoneAsync方法:  查看ReferenceQueue是否存在 Activity的引用<br>该检测的流程：  </li>
+</ol>
+<p>1） 移除不可达引用，如果当前引用不存在了，则不继续执行 </p>
+<p>2） 手动触发GC操作，gcTrigger中封装了gc操作的代码 </p>
+<p>3） 再次移除不可达引用，如果引用不存在了，则不继续执行</p>
+<p>4） 如果两次判定都没有被回收，则开始分析这个引用，最终生成HeapDump信息</p>
+<ol>
+<li>如果该Acitivty泄漏了，Dump出内存信息，再去分析泄漏路径 在1.6版本中主要使用HAHA库</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束<i class="fa fa-heart-o"></i>感谢阅读------</div>
+    
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/19/LeetCode刷题/" rel="next" title="LeetCode刷题">
+                <i class="fa fa-chevron-left"></i> LeetCode刷题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/30/内存泄漏/" rel="prev" title="内存泄漏">
+                内存泄漏 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTE2Mi81NzI5"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="yq" />
+          <p class="site-author-name" itemprop="name">yq</p>
+           
+              <p class="site-description motion-element" itemprop="description">永远保持一颗对未知事物的好奇心</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              推荐阅读
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenzekun.cn/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.html" title="配置教程" target="_blank">配置教程</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-diamond"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yq</span>
+</div>
+
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DFET4G5HNHDKWGHhpXFCwA4b-gzGzoHsz", "BTeLzbY0e13p68vdSLY7BNik");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  <!-- 背景动画
+<script type="text/javascript" src="/js/src/particle.js"></script>
+ 页面点击小红心
+<script type="text/javascript" src="/js/src/love.js"></script>-->
+</body>
+</html>

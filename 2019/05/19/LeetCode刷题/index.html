@@ -1,0 +1,951 @@
+<!doctype html>
+<link href="http://7u2ss1.com1.z0.glb.clouddn.com/harlem-shake-style.css" rel="stylesheet" type="text/css" />
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="从排序数组中删除重复项给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。 不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。你可以想象内部操作如下:12345678// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝int len = removeDuplicates(nums);// 在函数里">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode刷题">
+<meta property="og:url" content="http://yoursite.com/2019/05/19/LeetCode刷题/index.html">
+<meta property="og:site_name" content="Smile&#39;Blog">
+<meta property="og:description" content="从排序数组中删除重复项给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。 不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。你可以想象内部操作如下:12345678// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝int len = removeDuplicates(nums);// 在函数里">
+<meta property="og:updated_time" content="2020-02-28T03:20:02.488Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode刷题">
+<meta name="twitter:description" content="从排序数组中删除重复项给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。 不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。你可以想象内部操作如下:12345678// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝int len = removeDuplicates(nums);// 在函数里">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/19/LeetCode刷题/"/>
+
+
+
+
+
+  <title>LeetCode刷题 | Smile'Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b652010e74075b0b835d3b2ba6a1d824";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Smile'Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/19/LeetCode刷题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yq">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Smile'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LeetCode刷题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-19T00:00:00+08:00">
+                2019-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/05/19/LeetCode刷题/" class="leancloud_visitors" data-flag-title="LeetCode刷题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2,791
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="从排序数组中删除重复项"><a href="#从排序数组中删除重复项" class="headerlink" title="从排序数组中删除重复项"></a>从排序数组中删除重复项</h3><p>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。</p>
+<p>不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。<br>你可以想象内部操作如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝</span></div><div class="line"><span class="keyword">int</span> len = removeDuplicates(nums);</div><div class="line"></div><div class="line"><span class="comment">// 在函数里修改输入数组对于调用者是可见的。</span></div><div class="line"><span class="comment">// 根据你的函数返回的长度, 它会打印出数组中该长度范围内的所有元素。</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</div><div class="line">    print(nums[i]);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>我的思路</p>
+<blockquote>
+<p> 由于数组已经是有序的，所以我们只需要从0开始向后找到每一个更大的数，依次往下放就好了 ，  </p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">         <span class="keyword">int</span> lenght=<span class="number">1</span>;</div><div class="line">         <span class="keyword">int</span> s=<span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;          </div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=s;j&lt;nums.length;j++)&#123;     </div><div class="line">                    <span class="keyword">if</span>(nums[i]&lt;nums[j])&#123;</div><div class="line">                         s=j+<span class="number">1</span>;</div><div class="line">                         nums[i+<span class="number">1</span>]=nums[j];   </div><div class="line">                        lenght++;</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(i&lt;nums.length-<span class="number">1</span>&amp;&amp;nums[i]&gt;nums[i+<span class="number">1</span>])&#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> lenght;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面添加的判断是由于当最大的数已经放好之后，后面的排列是不需要的，而最大数之后的数一定会比他小，所以才增加的,不然排列会出现问题  </p>
+<h3 id="买卖股票的最佳时机-II"><a href="#买卖股票的最佳时机-II" class="headerlink" title="买卖股票的最佳时机 II"></a>买卖股票的最佳时机 II</h3><p>给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。</p>
+<p>设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。</p>
+<p>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+<p>示例 1:</p>
+<p>输入: [7,1,5,3,6,4]<br>输出: 7<br>解释: 在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。<br>     随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 = 3 。</p>
+<blockquote>
+<p>这个方法可以用一个贪心法则来实现，在对问题求解时，总是做出在当前看来是最好的选择。也就是说，不从整体最优上加以考虑，他所做出的是在某种意义上的局部最优解。贪心算法不是对所有问题都能得到整体最优解，关键是贪心策略的选择，选择的贪心策略必须具备无后效性，即某个状态以前的过程不会影响以后的状态，只与当前状态有关。</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    public int maxProfit(int[] prices) &#123;</div><div class="line">        int profile=0;</div><div class="line">       for(int i=0;i&lt;prices.length-1;i++)&#123;</div><div class="line">           if(prices[i+1]&gt;prices[i])&#123;</div><div class="line">               profile=profile+prices[i+1]-prices[i];</div><div class="line">           &#125;</div><div class="line">              </div><div class="line">       &#125;</div><div class="line">        return profile;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">```  </div><div class="line"></div><div class="line">###  旋转数组</div><div class="line">给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。</div><div class="line"></div><div class="line">示例 1:</div><div class="line"></div><div class="line">输入: [1,2,3,4,5,6,7] 和 k = 3  </div><div class="line">输出: [5,6,7,1,2,3,4]  </div><div class="line">解释:  </div><div class="line">向右旋转 1 步: [7,1,2,3,4,5,6]  </div><div class="line">向右旋转 2 步: [6,7,1,2,3,4,5]  </div><div class="line">向右旋转 3 步: [5,6,7,1,2,3,4]  </div><div class="line"></div><div class="line"></div><div class="line">尽可能想出更多的解决方案，至少有三种不同的方法可以解决这个问题。</div><div class="line">要求使用空间复杂度为 O(1) 的原地算法。  </div><div class="line">思路</div><div class="line">&gt; 该问题有很多解法，最为巧妙的做法是1）将左半部分的数组整个旋转，然后将右半部分的数组整个旋转，最后旋转整个数组获得结果2）求得len和k的最大公约数 ，如没有则就为k，然后从下标0开始，加k进行替换，即nums[0]和nums[k-1]交换，nums[2k-1]和nums[k-1]交换，nums[0]用一直到整个数组都交换完毕后的位置代替3）将数组分为ab两部分，如果a比b大就分为a1a2b其中a1的个数和b相同，然后a1和b交换变为ba2a1然后在对a2a1继续进行分，，如果a比b小就分为ab1b2其中b2的个数和a相同，然后a和b2交换变为b2b1a然后在对b2b1继续进行分，直到分不了位置</div><div class="line">STL左旋转字符串Rotate的深入理解和自我实现4）按照题目进行k次循环，每次移动一位，最后得到移动K步的数组</div><div class="line"></div><div class="line">### 只出现一次的数字 </div><div class="line">给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。</div><div class="line"></div><div class="line">说明：</div><div class="line"></div><div class="line">你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？</div><div class="line"></div><div class="line">&gt; 示例 1:</div><div class="line"></div><div class="line">输入: [2,2,1]</div><div class="line">输出: 1</div><div class="line"></div><div class="line">&gt; 解答</div><div class="line">该问题通过异或运算符^可以很快得到答案，其运算规律为两个操作数的位中，相同则结果为0，不同则结果为1。所以我们对整个数组进行异或运算，最终结果就是单独的数字</div><div class="line">```java</div><div class="line">  public int singleNumber1(int[] nums) &#123;</div><div class="line">        int res = 0;</div><div class="line">        for (int i = 0; i &lt; nums.length; i = i + 1) &#123;</div><div class="line">            res ^= nums[i];</div><div class="line">        &#125;</div><div class="line">        return res;</div><div class="line"></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="两个数组的交集-II"><a href="#两个数组的交集-II" class="headerlink" title="两个数组的交集 II"></a>两个数组的交集 II</h3><p>给定两个数组，写一个方法来计算它们的交集。</p>
+<p>例如:<br>给定 nums1 = [1, 2, 2, 1], nums2 = [2, 2], 返回 [2, 2].</p>
+<p>注意：</p>
+<p>   输出结果中每个元素出现的次数，应与元素在两个数组中出现的次数一致。<br>   我们可以不考虑输出结果的顺序。<br>跟进:</p>
+<p>如果给定的数组已经排好序呢？你将如何优化你的算法？<br>如果 nums1 的大小比 nums2 小很多，哪种方法更优？<br>如果nums2的元素存储在磁盘上，内存是有限的，你不能一次加载所有的元素到内存中，你该怎么办？<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div></pre></td><td class="code"><pre><div class="line">  //思路 先对两个数组进行排序，后循环，循环过程中如果1&gt;2那么2+1如果1&lt;2那么1+1</div><div class="line">    public int[] intersect(int[] nums1, int[] nums2) &#123;</div><div class="line">        int[] res = new int[nums2.length];</div><div class="line">        if (nums2.length == 0 || nums1.length == 0) return new int[]&#123;&#125;;</div><div class="line">        Arrays.sort(nums1);</div><div class="line">        Arrays.sort(nums2);</div><div class="line">        int point = 0;</div><div class="line">        int start = 0;</div><div class="line">        for (int i = 0; i &lt; nums2.length; i++) &#123;</div><div class="line">            for (int j = start; j &lt; nums1.length; j++) &#123;</div><div class="line">                if (nums2[i] == nums1[j]) &#123;</div><div class="line">                    res[point++] = nums2[i];</div><div class="line">                    start = ++j;</div><div class="line">                    break;</div><div class="line">                &#125; else if (nums2[i] &lt; nums1[j]) &#123;</div><div class="line">                    start = j;</div><div class="line">                    break;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        if (point == 0) &#123;</div><div class="line">            return new int[]&#123;&#125;;</div><div class="line">        &#125; else &#123;</div><div class="line">            int[] result = Arrays.copyOfRange(res, 0, point);</div><div class="line">            return result;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    //思路 先把数组1的值作为key放入map中，然后遍历nums2找map数组是否含有，有就插入数组中</div><div class="line">    public int[] intersects(int[] nums1, int[] nums2) &#123;</div><div class="line">        HashMap&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();</div><div class="line">        List&lt;Integer&gt; res = new ArrayList&lt;&gt;();</div><div class="line">        for (int n : nums1) &#123;</div><div class="line">            int num = map.get(n) != null ? map.get(n) : 0;</div><div class="line">            map.put(n, num + 1);</div><div class="line">        &#125;</div><div class="line">        for (int n : nums2) &#123;</div><div class="line">            int num = map.get(n) != null ? map.get(n) : 0;</div><div class="line">            if (num != 0) &#123;</div><div class="line">                res.add(n);</div><div class="line">                map.put(n, num - 1);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        int[] result = new int[res.size()];</div><div class="line">        for (int i = 0; i &lt; res.size(); i++) &#123;</div><div class="line">            result[i] = res.get(i);</div><div class="line">        &#125;</div><div class="line">        return result;</div><div class="line">   &#125;</div><div class="line">   </div><div class="line">```  </div><div class="line"></div><div class="line"></div><div class="line">**根据这几道题可以得出一个经验，当我们需要对一串数字找到独一无二的那个的时候，就可以使用异或，而针对于两个数组的时候，我们就可以通过创建一个map数组来遍历查找**  </div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">### 有效的数独  </div><div class="line"></div><div class="line"> 判断一个 9x9 的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。</div><div class="line"></div><div class="line"> 数字 1-9 在每一行只能出现一次。  </div><div class="line"> 数字 1-9 在每一列只能出现一次。  </div><div class="line"> 数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。  </div><div class="line"></div><div class="line"> 示例 1:  </div><div class="line"></div><div class="line"> 输入:  </div><div class="line"> [  </div><div class="line"> ["5","3",".",".","7",".",".",".","."],  </div><div class="line"> ["6",".",".","1","9","5",".",".","."],  </div><div class="line"> [".","9","8",".",".",".",".","6","."],  </div><div class="line"> ["8",".",".",".","6",".",".",".","3"],  </div><div class="line"> ["4",".",".","8",".","3",".",".","1"],  </div><div class="line"> ["7",".",".",".","2",".",".",".","6"],  </div><div class="line"> [".","6",".",".",".",".","2","8","."],  </div><div class="line"> [".",".",".","4","1","9",".",".","5"],  </div><div class="line"> [".",".",".",".","8",".",".","7","9"]  </div><div class="line"> ]  </div><div class="line"> 输出: true</div><div class="line"> </div><div class="line">```java</div><div class="line">  /**该问题即为，查找行列块中是否有相同元素，可以声明一个与被查询的列相同大小的数组，将第一个要查询的、</div><div class="line">   数字插入数组中，随后把第二个数字插入数组中，数组的值可以作为数组的下标，如果相同下标的数组有值，那就是有重复的</div><div class="line">  对于块而言，由于双重循环，就变成把&#123;&#123;0,0&#125;，&#123;0,1&#125;，&#123;0,2&#125;，&#123;0,3&#125;...&#125;如何转话为块中的元素</div><div class="line">   可得公式为  int cubeX = 3 * (i/3) + j/3;</div><div class="line">   int cubeY = 3 * (i%3) + j%3;</div><div class="line">   */</div><div class="line">    public static boolean isValidSudoku(char[][] board) &#123;</div><div class="line"></div><div class="line">        for (int i = 0; i &lt; board.length; i++) &#123;</div><div class="line">            boolean[] col = new boolean[board.length];</div><div class="line">            boolean[] row = new boolean[board.length];</div><div class="line">            boolean[] block = new boolean[board.length];</div><div class="line">            for (int j = 0; j &lt; board.length; j++) &#123;</div><div class="line">                if (board[i][j] != '.') &#123;</div><div class="line">                    if (row[board[i][j] - '1']) &#123;</div><div class="line">                        return false;</div><div class="line">                    &#125; else &#123;</div><div class="line">                        row[board[i][j] - '1'] = true;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                if (board[j][i] != '.') &#123;</div><div class="line">                    if (col[board[j][i] - '1']) &#123;</div><div class="line">                        return false;</div><div class="line">                    &#125; else &#123;</div><div class="line">                        col[board[j][i] - '1'] = true;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                int x = 3 * (i / 3) + j / 3;</div><div class="line">                int y = 3 * (i % 3) + j % 3;</div><div class="line">                if (board[x][y] != '.') &#123;</div><div class="line"></div><div class="line">                    if (block[board[x][y] - '1']) &#123;</div><div class="line">                        return false;</div><div class="line">                    &#125; else &#123;</div><div class="line">                        block[board[x][y] - '1'] = true;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        return true;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"> ```  </div><div class="line"> </div><div class="line">**对于查询数组重复值的问题，可以声明一个新数组，将数组的值作为新数组的下标，之后如果查询到该下标有值，就证明有重复的数字了**</div><div class="line"></div><div class="line">### 反转字符串 11</div><div class="line">编写一个函数，其作用是将输入的字符串反转过来。  </div><div class="line">示例：  </div><div class="line">&gt; 输入: "A man, a plan, a canal: Panama"  </div><div class="line">输出: "amanaP :lanac a ,nalp a ,nam A"  </div><div class="line">**如果效率要最高，应该把字符串转换为字节数组，对字节数组进行倒序**</div><div class="line">```java</div><div class="line">  public static String reverseString1(String s) &#123;</div><div class="line">        char[] chars = s.toCharArray();</div><div class="line">        int i = 0;</div><div class="line">        int j = chars.length - 1;</div><div class="line">        while (i &lt; j) &#123;</div><div class="line">            char temp = chars[i];</div><div class="line">            chars[i] = chars[j];</div><div class="line">            chars[j] = temp;</div><div class="line">            i++;</div><div class="line">            j--;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return new String(chars);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">```  </div><div class="line"></div><div class="line">### 环形链表  </div><div class="line">给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。</div><div class="line"></div><div class="line">说明：不允许修改给定的链表。</div><div class="line"></div><div class="line">对于判断一个链表是不是环形，我们可以使用快慢指针法。  </div><div class="line">![image](https://note.youdao.com/yws/api/personal/file/50E2920AF0154C7CB5145EA375304EA5?method=download&amp;shareKey=867e1157078b508a3cf3c5f54b6261d7) </div><div class="line">如图，设从head到环形开始结点的距离是A，慢指针从环形开始结点走到相遇点走过的路程是B，环的长度是L（画图的时候漏掉了，图中没有标示出来）。于是有：</div><div class="line"></div><div class="line">对慢指针，从head走到meet的距离为A+B  </div><div class="line">对快指针，从head走到meet的距离为2A+2B（因为快指针的速度是慢指针的两倍，而在相遇时它们走了相同的时间）  </div><div class="line">相遇时，慢指针被快指针套了一圈，即快指针比慢指针多走一圈  </div><div class="line">根据以上分析我们可以列一个等式：A+B+L = 2A+2B，可以解得L = A + B。从这个结果可以看出，meet到begin的距离也是A。这意味着，如果我们分别放两个指针在head和meet，让它们以相同的速度前进，它们第一次相遇的地方就是我们要找的环形开始结点。    </div><div class="line">```java</div><div class="line">/**</div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * class ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode next;</div><div class="line"> *     ListNode(int x) &#123;</div><div class="line"> *         val = x;</div><div class="line"> *         next = null;</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">public class Solution &#123;</div><div class="line">    public ListNode detectCycle(ListNode head) &#123;</div><div class="line">          if(head==null) return null;</div><div class="line">        ListNode slowP=head.next;</div><div class="line">        ListNode quickP;</div><div class="line">        if(slowP!=null) quickP=slowP.next; else return null;</div><div class="line">        while(quickP!=slowP)&#123;</div><div class="line">            if(quickP!=null &amp;&amp; quickP.next!=null)</div><div class="line">              quickP=quickP.next.next;</div><div class="line">            else </div><div class="line">                return null;</div><div class="line">            slowP=slowP.next;</div><div class="line">        &#125; </div><div class="line">       slowP=head;</div><div class="line">       while(quickP!=slowP)&#123;</div><div class="line">            if(quickP!=null &amp;&amp; quickP.next!=null)</div><div class="line">              quickP=quickP.next;</div><div class="line">            else </div><div class="line">                return null;</div><div class="line">            slowP=slowP.next;</div><div class="line">        &#125; </div><div class="line">        </div><div class="line">        return quickP;</div><div class="line"></div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束<i class="fa fa-heart-o"></i>感谢阅读------</div>
+    
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/15/weex 踩坑记录/" rel="next" title="weex 踩坑记录">
+                <i class="fa fa-chevron-left"></i> weex 踩坑记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/20/LeakCanary源码分析/" rel="prev" title="LeakCanary源码分析">
+                LeakCanary源码分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTE2Mi81NzI5"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="yq" />
+          <p class="site-author-name" itemprop="name">yq</p>
+           
+              <p class="site-description motion-element" itemprop="description">永远保持一颗对未知事物的好奇心</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              推荐阅读
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenzekun.cn/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.html" title="配置教程" target="_blank">配置教程</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#从排序数组中删除重复项"><span class="nav-number">1.</span> <span class="nav-text">从排序数组中删除重复项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#买卖股票的最佳时机-II"><span class="nav-number">2.</span> <span class="nav-text">买卖股票的最佳时机 II</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两个数组的交集-II"><span class="nav-number">3.</span> <span class="nav-text">两个数组的交集 II</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-diamond"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yq</span>
+</div>
+
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DFET4G5HNHDKWGHhpXFCwA4b-gzGzoHsz", "BTeLzbY0e13p68vdSLY7BNik");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  <!-- 背景动画
+<script type="text/javascript" src="/js/src/particle.js"></script>
+ 页面点击小红心
+<script type="text/javascript" src="/js/src/love.js"></script>-->
+</body>
+</html>
